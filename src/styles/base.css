@@ -110,11 +110,9 @@ ol {
   padding-top: calc(var(--header-h) + var(--header-rail-h) + var(--safe-top));
 }
 
-/* Home mobile: hero runs under a transparent header */
-@media (max-width: 899px) {
-  .page--hero .page__main {
-    padding-top: 0;
-  }
+/* Hero pages: hero banner starts right next to the top black announcement rail */
+.page--hero .page__main {
+  padding-top: calc(2.2rem + var(--safe-top));
 }
 
 .container {

@@ -271,115 +271,68 @@ export function renderHeader(): string {
 
   return `
   <header class="site-header" data-header>
-    <div class="site-header__rail" data-announce aria-roledescription="carousel" aria-label="Announcements">
-      <button class="announce-nav announce-nav--prev" type="button" data-announce-prev aria-label="Previous announcement">
-        ${icon('chevron-left')}
-      </button>
-      <div class="announce-viewport">
-        <div class="announce-track" data-announce-track>
-          <p class="announce-slide announce-slide--motto is-active" data-announce-slide aria-hidden="false">
-            <img class="announce-mark" src="${brand}brand/rivlet-mark.png" alt="" width="24" height="24" />
-            <span class="announce-copy">
-              <span class="announce-copy__full">Move like water, feel like air.</span>
-              <span class="announce-copy__short">Move like water, feel like air.</span>
-            </span>
-          </p>
-          <p class="announce-slide" data-announce-slide aria-hidden="true">
-            <span class="announce-copy">
-              <span class="announce-copy__full">
-                Free shipping on prepaid orders · Easy returns in India.
-                Shop <a href="${shopHref()}">Collection</a> and <a href="${brand}sets/">Looks</a>.
-              </span>
-              <span class="announce-copy__short">
-                Free shipping · Easy returns.
-                Shop <a href="${shopHref()}">Collection</a>
-              </span>
-            </span>
-          </p>
-          <p class="announce-slide" data-announce-slide aria-hidden="true">
-            <span class="announce-copy">
-              <span class="announce-copy__full">
-                Need help? Faster support on
-                <a href="${whatsappHref}" target="_blank" rel="noreferrer">WhatsApp</a>.
-              </span>
-              <span class="announce-copy__short">
-                Help on <a href="${whatsappHref}" target="_blank" rel="noreferrer">WhatsApp</a>
-              </span>
-            </span>
-          </p>
-          <p class="announce-slide" data-announce-slide aria-hidden="true">
-            <span class="announce-copy">
-              <span class="announce-copy__full">
-                Engineered for Indian heat.
-                Shop <a href="${brand}sets/">Walk-out ready looks</a>.
-              </span>
-              <span class="announce-copy__short">
-                For Indian heat. Shop <a href="${brand}sets/">Looks</a>
-              </span>
-            </span>
-          </p>
-        </div>
+    <div class="site-header__rail" data-announce aria-label="Announcements">
+      <div class="announce-bar-reference">
+        <span class="announce-bar-reference__text">Free shipping across India on orders over ₹2,499</span>
+        <span class="announce-bar-reference__dot">•</span>
+        <span class="announce-bar-reference__text"><a href="${whatsappHref}" target="_blank" rel="noreferrer" class="announce-bar-reference__link">Support via WhatsApp ↗</a></span>
       </div>
-      <button class="announce-nav announce-nav--next" type="button" data-announce-next aria-label="Next announcement">
-        ${icon('chevron-right')}
-      </button>
     </div>
     <div class="site-header__bar">
       <div class="site-header__inner">
         <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false">${icon('menu')}</button>
 
-        <div class="site-header__cluster">
-          <a class="site-logo" href="${brand}" aria-label="Rivlet home">
-            <img class="site-logo__lockup" src="${brand}brand/rivlet-lockup.png" alt="Rivlet" width="800" height="165" />
-          </a>
+        <a class="site-logo" href="${brand}" aria-label="Rivlet home">
+          <img class="site-logo__lockup" src="${brand}brand/rivlet-lockup.png" alt="Rivlet" width="800" height="165" />
+        </a>
 
-          <nav class="site-nav" aria-label="Primary">
-            <div class="site-nav__shop">
-              <a class="site-nav__link" href="${shopHref()}" data-mega-trigger>
-                Shop
-                <span class="site-nav__chevron" aria-hidden="true"></span>
-              </a>
-              <div class="mega" role="menu" aria-label="Shop menu" data-mega>
-                <div class="mega__inner">
-                  <div class="mega__col">
-                    <p class="mega__eyebrow">What are you shopping for?</p>
-                    <div class="mega__grid" data-mega-situations>
-                      ${situationCards}
+        <nav class="site-nav" aria-label="Primary">
+          <div class="site-nav__shop">
+            <a class="site-nav__link" href="${shopHref()}" data-mega-trigger>
+              SHOP
+              <span class="site-nav__chevron" aria-hidden="true"></span>
+            </a>
+            <div class="mega" role="menu" aria-label="Shop menu" data-mega>
+              <div class="mega__inner">
+                <div class="mega__col">
+                  <p class="mega__eyebrow">What are you shopping for?</p>
+                  <div class="mega__grid" data-mega-situations>
+                    ${situationCards}
+                  </div>
+                </div>
+                <div class="mega__aside" data-mega-aside>
+                  <div class="mega__panel mega__panel--featured is-active" data-mega-panel="default">
+                    <div class="mega__features">
+                      <a class="mega__feature" href="${shopHref()}">
+                        <img class="mega__feature-img" src="${featuredCollectionImg}" alt="" width="720" height="900" loading="lazy" decoding="async" />
+                        <span class="mega__feature-veil" aria-hidden="true"></span>
+                        <span class="mega__feature-copy">
+                          <span class="mega__eyebrow">Featured</span>
+                          <strong>Full collection</strong>
+                          <span>Six engineered pieces · Midnight &amp; Cardamom</span>
+                        </span>
+                      </a>
+                      <a class="mega__feature mega__feature--soft" href="${brand}sets/">
+                        <img class="mega__feature-img" src="${featuredLooksImg}" alt="" width="720" height="900" loading="lazy" decoding="async" />
+                        <span class="mega__feature-veil" aria-hidden="true"></span>
+                        <span class="mega__feature-copy">
+                          <span class="mega__eyebrow">Looks</span>
+                          <strong>Walk-out ready</strong>
+                          <span>Eight pairings. Midnight &amp; Cardamom.</span>
+                        </span>
+                      </a>
                     </div>
                   </div>
-                  <div class="mega__aside" data-mega-aside>
-                    <div class="mega__panel mega__panel--featured is-active" data-mega-panel="default">
-                      <div class="mega__features">
-                        <a class="mega__feature" href="${shopHref()}">
-                          <img class="mega__feature-img" src="${featuredCollectionImg}" alt="" width="720" height="900" loading="lazy" decoding="async" />
-                          <span class="mega__feature-veil" aria-hidden="true"></span>
-                          <span class="mega__feature-copy">
-                            <span class="mega__eyebrow">Featured</span>
-                            <strong>Full collection</strong>
-                            <span>Six engineered pieces · Midnight &amp; Cardamom</span>
-                          </span>
-                        </a>
-                        <a class="mega__feature mega__feature--soft" href="${brand}sets/">
-                          <img class="mega__feature-img" src="${featuredLooksImg}" alt="" width="720" height="900" loading="lazy" decoding="async" />
-                          <span class="mega__feature-veil" aria-hidden="true"></span>
-                          <span class="mega__feature-copy">
-                            <span class="mega__eyebrow">Looks</span>
-                            <strong>Walk-out ready</strong>
-                            <span>Eight pairings. Midnight &amp; Cardamom.</span>
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                    ${situationPanels}
-                  </div>
+                  ${situationPanels}
                 </div>
               </div>
             </div>
-            <a class="site-nav__link" href="${shopHref()}" ${navCurrent('/shop')}>Collection</a>
-            <a class="site-nav__link" href="${brand}sets/" ${navCurrent('/sets')}>Looks</a>
-            <a class="site-nav__link" href="${brand}stories/" ${navCurrent('/stories')}>Stories</a>
-          </nav>
-        </div>
+          </div>
+          <a class="site-nav__link" href="${shopHref()}" ${navCurrent('/shop')}>COLLECTION</a>
+          <a class="site-nav__link" href="${brand}sets/" ${navCurrent('/sets')}>LOOKS</a>
+          <a class="site-nav__link" href="${brand}stories/" ${navCurrent('/stories')}>STORIES</a>
+          <a class="site-nav__link" href="${brand}blog/" ${navCurrent('/blog')}>JOURNAL</a>
+        </nav>
 
         <div class="header-actions">
           <button class="icon-btn header-actions__search" type="button" data-search-open aria-label="Search">${icon('search')}</button>
@@ -432,10 +385,13 @@ export function renderHeader(): string {
             ${icon('heart')}
             <span class="cart-count wish-count" data-wish-count hidden>0</span>
           </button>
-          <button class="icon-btn" type="button" data-cart-open aria-label="Open bag">
+          <button class="icon-btn header-actions__cart" type="button" data-cart-open aria-label="Open bag">
             ${icon('bag')}
-            <span class="cart-count" data-cart-count hidden>0</span>
+            <span class="cart-count" data-cart-count>${cartCount()}</span>
           </button>
+          <div class="header-currency" role="button" aria-label="Region and Currency: English, INR" tabindex="0">
+            <span>EN / INR</span>
+          </div>
         </div>
       </div>
       <div class="site-header__search-row">
@@ -860,7 +816,7 @@ function updateCartCount(): void {
   const el = document.querySelector<HTMLElement>('[data-cart-count]')
   if (!el) return
   const n = cartCount()
-  el.hidden = n === 0
+  el.hidden = false
   el.textContent = String(n)
 }
 

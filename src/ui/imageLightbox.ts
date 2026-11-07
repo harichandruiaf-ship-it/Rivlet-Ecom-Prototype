@@ -1,4 +1,4 @@
-/** Fullscreen PDP photo viewer — gesture zoom, close via X or browser Back. */
+/** Fullscreen PDP photo viewer: gesture zoom, close via X or browser Back. */
 
 export type LightboxHotspot = {
   /** Horizontal position inside the frame, 0–100. */
@@ -226,7 +226,7 @@ export function openImageLightbox(opts: OpenImageLightboxOptions): () => void {
   activeClose = () => close(false)
 
   const onPopState = () => {
-    /* Hardware / browser Back — close preview only, stay on PDP. */
+    /* Hardware / browser Back: close preview only, stay on PDP. */
     pushedHistory = false
     close(true)
   }

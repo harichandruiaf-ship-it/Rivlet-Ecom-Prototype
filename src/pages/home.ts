@@ -1,4 +1,4 @@
-﻿import '../styles/tokens.css'
+import '../styles/tokens.css'
 import '../styles/base.css'
 import '../styles/components.css'
 import '../styles/pages.css'
@@ -20,13 +20,111 @@ import {
   coordSetPrice,
   formatPrice,
   getCoordImages,
+  type Size,
 } from '../data/products'
+import { addToCart, addCoordSet } from '../cart'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) throw new Error('#app missing')
 
 const [coordMidnightFront, coordMidnightAlt] = getCoordImages(COORD_SET, 'midnight')
 const [coordCardamomFront, coordCardamomAlt] = getCoordImages(COORD_SET, 'cardamom')
+
+interface HeroLook {
+  index: string
+  title: string
+  price: string
+  mrp: number
+  color: 'cardamom' | 'midnight'
+  thumb: string
+  type: 'photo' | 'video'
+  bgDesktop?: string
+  bgMobile?: string
+  videoDesktop?: string
+  videoMobile?: string
+  badge: string
+  topId: string
+  bottomId: string
+  lookTheme: string
+}
+
+const HERO_LOOKS: HeroLook[] = [
+  {
+    index: '01',
+    title: 'Crop + Leggings Set • Cardamom',
+    price: formatPrice(3298),
+    mrp: 3298,
+    color: 'cardamom',
+    thumb: 'media/coords/crop-leggings-cardamom-1.png',
+    type: 'photo',
+    bgDesktop: 'media/hero-slide-1-master.jpg',
+    bgMobile: 'media/hero-slide-1-mobile.jpg',
+    badge: '01 / 05',
+    topId: 'RVL-TNK-003-C',
+    bottomId: 'RVL-LEG-001',
+    lookTheme: 'Seated Studio Calm',
+  },
+  {
+    index: '02',
+    title: 'Sports Bra + Leggings Set • Cardamom',
+    price: formatPrice(3398),
+    mrp: 3398,
+    color: 'cardamom',
+    thumb: 'media/coords/bra-leggings-cardamom-1.png',
+    type: 'photo',
+    bgDesktop: 'media/hero-slide-2.jpg',
+    bgMobile: 'media/hero-slide-2-mobile.jpg',
+    badge: '02 / 05',
+    topId: 'RVL-BRA-002',
+    bottomId: 'RVL-LEG-001',
+    lookTheme: 'Architectural Stucco & Palms',
+  },
+  {
+    index: '03',
+    title: 'Sports Bra + Shorts Set • Midnight',
+    price: formatPrice(3198),
+    mrp: 3198,
+    color: 'midnight',
+    thumb: 'media/coords/bra-shorts-midnight-1.png',
+    type: 'photo',
+    bgDesktop: 'media/hero-slide-3.jpg',
+    bgMobile: 'media/hero-slide-3-mobile.jpg',
+    badge: '03 / 05',
+    topId: 'RVL-BRA-002',
+    bottomId: 'RVL-SHT-004',
+    lookTheme: 'Fluid Flow & Movement',
+  },
+  {
+    index: '04',
+    title: 'Crop + Shorts Set • Cardamom',
+    price: formatPrice(3098),
+    mrp: 3098,
+    color: 'cardamom',
+    thumb: 'media/coords/crop-shorts-cardamom-1.png',
+    type: 'photo',
+    bgDesktop: 'media/hero-slide-4.jpg',
+    bgMobile: 'media/hero-slide-4-mobile.jpg',
+    badge: '04 / 05',
+    topId: 'RVL-TNK-003-C',
+    bottomId: 'RVL-SHT-004',
+    lookTheme: 'Sculptural Courtyard Serenity',
+  },
+  {
+    index: '05',
+    title: 'Motion Movement Set • Cardamom',
+    price: formatPrice(3298),
+    mrp: 3298,
+    color: 'cardamom',
+    thumb: 'media/coords/crop-leggings-cardamom-2.png',
+    type: 'video',
+    videoDesktop: 'media/hero-desktop.mp4',
+    videoMobile: 'media/hero-mobile.mp4',
+    badge: '05 / 05',
+    topId: 'RVL-TNK-003-C',
+    bottomId: 'RVL-LEG-001',
+    lookTheme: 'Movement in Motion • Live Film',
+  },
+]
 
 const PROMISE_FILMS = [
   {
@@ -56,41 +154,183 @@ const PROMISE_FILMS = [
 ] as const
 
 app.innerHTML = `<div data-page-content>
-  <section class="hero hero--enter">
-    <div class="hero__media" aria-hidden="true">
-      <video
-        class="hero__video is-active"
-        muted
-        playsinline
-        preload="auto"
-        data-hero-video
-      ></video>
-      <video
-        class="hero__video"
-        muted
-        playsinline
-        preload="auto"
-        data-hero-video
-      ></video>
+  <section class="hero hero--editorial" id="hero" data-hero-container>
+    <div class="hero__editorial-media" aria-hidden="true" data-hero-media>
+      <!-- Unified Slides Layer: 4 Editorial Looks + 1 Live Motion Film -->
+      <div class="hero__slides-layer" data-hero-slides-layer>
+        ${HERO_LOOKS.map((look, idx) => {
+          if (look.type === 'video') {
+            return `
+            <div class="hero__slide-item hero__slide-item--video ${idx === 0 ? 'is-active' : ''}" data-hero-slide="${idx}">
+              <video
+                class="hero__video-el hero__video-el--desktop"
+                muted
+                playsinline
+                loop
+                preload="auto"
+                autoplay
+                data-hero-video-desktop
+              >
+                <source src="${assetHref(look.videoDesktop!)}" type="video/mp4" />
+              </video>
+              <video
+                class="hero__video-el hero__video-el--mobile"
+                muted
+                playsinline
+                loop
+                preload="auto"
+                autoplay
+                data-hero-video-mobile
+              >
+                <source src="${assetHref(look.videoMobile!)}" type="video/mp4" />
+              </video>
+            </div>`
+          }
+          return `
+          <picture class="hero__slide-item ${idx === 0 ? 'is-active' : ''}" data-hero-slide="${idx}">
+            <source media="(max-width: 899px)" srcset="${assetHref(look.bgMobile!)}" />
+            <img src="${assetHref(look.bgDesktop!)}" alt="${look.title} - ${look.lookTheme}" class="hero__slide-photo" loading="${idx === 0 ? 'eager' : 'lazy'}" />
+          </picture>`
+        }).join('')}
+      </div>
+
+      <div class="hero__editorial-overlay"></div>
     </div>
-    <div class="hero__content">
-      <p class="eyebrow hero__eyebrow" style="color:rgba(255,252,247,0.7);margin-bottom:1rem">Women · Collection</p>
-      <h1 class="hero__brand">
-        <img
-          class="hero__brand-mark"
-          src="${assetHref('brand/rivlet-hero-wordmark.png')}"
-          alt="Rivlet"
-          width="938"
-          height="273"
-        />
-      </h1>
-      <p class="hero__motto">Move like water, feel like air.</p>
-      <p class="hero__support">A wardrobe engineered for tropical heat and long days - no patch, no smell, no rub. Indian-crafted. Globally held.</p>
-      <a class="btn btn--light hero__cta" href="${shopHref()}">Explore Collection</a>
+
+    <div class="hero__container">
+      <div class="hero__grid">
+        <!-- Left Column: Brand, Tagline, Vision & Conversion Action -->
+        <div class="hero__lead">
+          <div class="hero__eyebrow-wrap">
+            <img src="${assetHref('brand/rivlet-mark-light.png')}" alt="" class="hero__wave-mark-icon" width="22" height="22" aria-hidden="true" />
+            <p class="hero__eyebrow-ref">WOMEN'S COLLECTION</p>
+          </div>
+
+          <h1 class="hero__headline">
+            <span class="sr-only">Rivlet</span>
+            <img src="${assetHref('brand/rivlet-hero-wordmark.png')}" alt="Rivlet" class="hero__brand-wordmark" width="938" height="273" />
+          </h1>
+
+          <p class="hero__motto">Move like water, feel like air.</p>
+          <p class="hero__support">
+            A wardrobe engineered for tropical heat and long days. Zero-patch, scent-resistant, natural-craft. Indian-crafted, globally held.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn-hero btn-hero--primary" href="${shopHref()}">
+              <span>EXPLORE COLLECTION</span>
+              <span class="btn-hero__arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <!-- Bottom Meta Metrics & Review Proof -->
+          <div class="hero__meta-row">
+            <div class="hero__slide-counter" aria-label="Slide 1 of 5">
+              <span class="hero__slide-curr" data-hero-curr>01</span>
+              <span class="hero__slide-sep">/</span>
+              <span class="hero__slide-total">05</span>
+            </div>
+
+            <a class="hero__scroll-down" href="#the-friction" data-scroll-to="#the-friction" aria-label="Scroll to discover">
+              <span>SCROLL TO DISCOVER</span>
+              <span class="hero__scroll-arrow" aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Floating "SHOP THE LOOK" Frosted Glass Card -->
+        <div class="hero__aside">
+          <div class="shop-look-card" data-shop-look>
+            <div class="shop-look-card__head">
+              <span class="shop-look-card__label">SHOP THE LOOK</span>
+            </div>
+
+            <div class="shop-look-card__body">
+              <div class="shop-look-card__thumb-wrap">
+                <img
+                  class="shop-look-card__thumb"
+                  src="${assetHref(HERO_LOOKS[0].thumb)}"
+                  alt="${HERO_LOOKS[0].title}"
+                  data-look-thumb
+                />
+              </div>
+
+              <div class="shop-look-card__details">
+                <h3 class="shop-look-card__title" data-look-title>
+                  ${HERO_LOOKS[0].title}
+                </h3>
+                <p class="shop-look-card__price" data-look-price>${HERO_LOOKS[0].price}</p>
+
+                <!-- Interactive Size Selector Pills -->
+                <div class="shop-look-card__sizes" role="radiogroup" aria-label="Select size">
+                  <button type="button" class="size-pill" data-size-pill="XS" aria-label="Size XS">XS</button>
+                  <button type="button" class="size-pill is-selected" data-size-pill="S" aria-label="Size S">S</button>
+                  <button type="button" class="size-pill" data-size-pill="M" aria-label="Size M">M</button>
+                  <button type="button" class="size-pill" data-size-pill="L" aria-label="Size L">L</button>
+                </div>
+
+                <!-- Add to Bag CTA Button -->
+                <button
+                  type="button"
+                  class="btn-shop-look"
+                  data-add-look-btn
+                  aria-label="Add ${HERO_LOOKS[0].title} to bag"
+                >
+                  <span class="btn-shop-look__text">ADD TO BAG</span>
+                  <span class="btn-shop-look__icon" aria-hidden="true">+</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lookbook Thumbnail Selector Bar Below Card -->
+          <div class="hero-carousel-bar" aria-label="Look angles switcher">
+            <button
+              type="button"
+              class="carousel-nav-btn carousel-nav-btn--prev"
+              data-look-prev
+              aria-label="Previous look"
+            >
+              ‹
+            </button>
+
+            <div class="hero-carousel-thumbs" role="tablist">
+              ${HERO_LOOKS.map(
+                (look, i) => `
+                <button
+                  type="button"
+                  class="carousel-thumb ${i === 0 ? 'is-active' : ''}"
+                  data-look-index="${i}"
+                  role="tab"
+                  aria-selected="${i === 0 ? 'true' : 'false'}"
+                  aria-label="Look ${look.index} - ${look.title}"
+                  title="${look.title}"
+                >
+                  <img src="${assetHref(look.thumb)}" alt="${look.title}" />
+                </button>`,
+              ).join('')}
+            </div>
+
+            <button
+              type="button"
+              class="carousel-nav-btn carousel-nav-btn--next"
+              data-look-next
+              aria-label="Next look"
+            >
+              ›
+            </button>
+          </div>
+
+          <!-- Live Progress Bar Indicator -->
+          <div class="hero-progress-bar" aria-hidden="true" title="Auto-advance live progression">
+            <div class="hero-progress-fill" data-hero-progress></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="the-friction">
     <div class="container">
       <div class="section-head section-head--friction">
         <p class="eyebrow">The friction</p>
@@ -395,121 +635,218 @@ function bindCommunityJoin(): void {
 
 bindCommunityJoin()
 
-/** Dual-buffer crossfade - avoids the black gap native `loop` leaves between cycles. */
-function bindSeamlessHeroLoop(): void {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+function bindHeroLookInteractivity(): void {
+  let currentIndex = 0
+  let selectedSize: Size = 'S'
+  let isPaused = false
+  const SLIDE_DURATION = 5500
+  let slideStartTime = performance.now()
+  let pausedElapsed = 0
 
-  const videos = [...document.querySelectorAll<HTMLVideoElement>('[data-hero-video]')]
-  if (videos.length < 2) return
+  const slides = document.querySelectorAll<HTMLElement>('[data-hero-slide]')
+  const progressFill = document.querySelector<HTMLElement>('[data-hero-progress]')
+  const sizePills = document.querySelectorAll<HTMLButtonElement>('[data-size-pill]')
+  const addBtn = document.querySelector<HTMLButtonElement>('[data-add-look-btn]')
+  const thumbs = document.querySelectorAll<HTMLButtonElement>('[data-look-index]')
+  const prevBtn = document.querySelector<HTMLButtonElement>('[data-look-prev]')
+  const nextBtn = document.querySelector<HTMLButtonElement>('[data-look-next]')
+  const titleEl = document.querySelector<HTMLElement>('[data-look-title]')
+  const priceEl = document.querySelector<HTMLElement>('[data-look-price]')
+  const thumbEl = document.querySelector<HTMLImageElement>('[data-look-thumb]')
+  const currIndexEl = document.querySelector<HTMLElement>('[data-hero-curr]')
+  const shopCard = document.querySelector<HTMLElement>('[data-shop-look]')
+  const videoDesktop = document.querySelector<HTMLVideoElement>('[data-hero-video-desktop]')
+  const videoMobile = document.querySelector<HTMLVideoElement>('[data-hero-video-mobile]')
 
-  const mobileMq = window.matchMedia('(max-width: 899px)')
-  const heroSrc = () =>
-    assetHref(mobileMq.matches ? 'media/hero-mobile.mp4' : 'media/hero-desktop.mp4')
-
-  let active = videos[0]!
-  let standby = videos[1]!
-  let swapping = false
-  let raf = 0
-  const LEAD = 0.35
-
-  const prep = (v: HTMLVideoElement) => {
-    v.muted = true
-    v.defaultMuted = true
-    v.playsInline = true
-    v.loop = false
-    v.setAttribute('muted', '')
-    v.setAttribute('playsinline', '')
+  // Safe video playback trigger
+  const playVideos = () => {
+    if (videoDesktop && videoDesktop.paused) {
+      videoDesktop.play().catch(() => {})
+    }
+    if (videoMobile && videoMobile.paused) {
+      videoMobile.play().catch(() => {})
+    }
   }
-  prep(active)
-  prep(standby)
+  playVideos()
 
-  const applySrc = (v: HTMLVideoElement, src: string) => {
-    if (v.dataset.heroSrc === src && v.currentSrc) return
-    v.dataset.heroSrc = src
-    v.pause()
-    v.querySelectorAll('source').forEach((s) => s.remove())
-    const source = document.createElement('source')
-    source.src = src
-    source.type = 'video/mp4'
-    v.appendChild(source)
-    v.load()
+  // Size pill selection
+  sizePills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      sizePills.forEach((p) => p.classList.remove('is-selected'))
+      pill.classList.add('is-selected')
+      selectedSize = (pill.dataset.sizePill as Size) || 'S'
+    })
+  })
+
+  let previousIndex = -1
+  let transitionTimeout: number | undefined
+
+  // Look switcher: handles both photo slides and live film in the same sequence with zero-dip studio crossfade
+  const selectLook = (index: number) => {
+    const nextIndex = (index + HERO_LOOKS.length) % HERO_LOOKS.length
+    if (nextIndex === currentIndex && previousIndex !== -1) return
+
+    const prevIndex = currentIndex
+    previousIndex = prevIndex
+    currentIndex = nextIndex
+    const look = HERO_LOOKS[currentIndex]
+    if (!look) return
+
+    slideStartTime = performance.now()
+    pausedElapsed = 0
+
+    if (transitionTimeout) {
+      window.clearTimeout(transitionTimeout)
+    }
+
+    // Previous slide stays visible at z-index: 1 while incoming slide fades in at z-index: 2
+    slides.forEach((slide) => {
+      const idx = Number(slide.dataset.heroSlide)
+      if (idx === currentIndex) {
+        slide.classList.remove('is-previous')
+        slide.classList.add('is-active')
+      } else if (idx === prevIndex) {
+        slide.classList.remove('is-active')
+        slide.classList.add('is-previous')
+      } else {
+        slide.classList.remove('is-active', 'is-previous')
+      }
+    })
+
+    if (look.type === 'video') {
+      playVideos()
+    }
+
+    // Clean up .is-previous after crossfade duration completes (1000ms)
+    transitionTimeout = window.setTimeout(() => {
+      slides.forEach((slide) => {
+        const idx = Number(slide.dataset.heroSlide)
+        if (idx !== currentIndex) {
+          slide.classList.remove('is-previous')
+        }
+      })
+    }, 1000)
+
+    // Switch active carousel thumbnail
+    thumbs.forEach((t, i) => {
+      const active = i === currentIndex
+      t.classList.toggle('is-active', active)
+      t.setAttribute('aria-selected', String(active))
+    })
+
+    // Update floating shop card
+    if (titleEl) titleEl.textContent = look.title
+    if (priceEl) priceEl.textContent = look.price
+    if (thumbEl) {
+      thumbEl.src = assetHref(look.thumb)
+      thumbEl.alt = look.title
+    }
+    if (currIndexEl) currIndexEl.textContent = look.index
+    if (progressFill) progressFill.style.width = '0%'
   }
 
-  const syncSources = () => {
-    const src = heroSrc()
-    applySrc(active, src)
-    applySrc(standby, src)
+  // Live Auto-Advance & Progress Loop with requestAnimationFrame
+  let rafId: number
+  const tick = (now: number) => {
+    if (!isPaused) {
+      const elapsed = (now - slideStartTime) + pausedElapsed
+      const progress = Math.min(100, (elapsed / SLIDE_DURATION) * 100)
+      if (progressFill) {
+        progressFill.style.width = `${progress}%`
+      }
+      if (elapsed >= SLIDE_DURATION) {
+        selectLook(currentIndex + 1)
+      }
+    }
+    rafId = requestAnimationFrame(tick)
   }
+  rafId = requestAnimationFrame(tick)
 
-  const playSafe = (v: HTMLVideoElement) => {
-    void v.play().catch(() => {
-      /* muted autoplay usually allowed */
+  // Pause auto-advance on user hover or focus on the shop card
+  if (shopCard) {
+    shopCard.addEventListener('mouseenter', () => {
+      if (!isPaused) {
+        pausedElapsed += performance.now() - slideStartTime
+        isPaused = true
+      }
+    })
+    shopCard.addEventListener('mouseleave', () => {
+      if (isPaused) {
+        slideStartTime = performance.now()
+        isPaused = false
+      }
+    })
+    shopCard.addEventListener('focusin', () => {
+      if (!isPaused) {
+        pausedElapsed += performance.now() - slideStartTime
+        isPaused = true
+      }
+    })
+    shopCard.addEventListener('focusout', () => {
+      if (isPaused) {
+        slideStartTime = performance.now()
+        isPaused = false
+      }
     })
   }
 
-  const swap = () => {
-    if (swapping) return
-    swapping = true
-    try {
-      standby.currentTime = 0.001
-    } catch {
-      /* ignore seek errors before metadata */
+  // Thumbnails and arrow clicks
+  thumbs.forEach((t, i) => {
+    t.addEventListener('click', () => selectLook(i))
+  })
+  prevBtn?.addEventListener('click', () => selectLook(currentIndex - 1))
+  nextBtn?.addEventListener('click', () => selectLook(currentIndex + 1))
+
+  // Add to Bag CTA
+  addBtn?.addEventListener('click', () => {
+    const look = HERO_LOOKS[currentIndex]
+    if (!look) return
+
+    if (look.topId && look.bottomId) {
+      addCoordSet(look.color, selectedSize, look.topId, look.bottomId)
+    } else if (look.topId) {
+      addToCart(look.topId, look.color, selectedSize, 1)
+    } else if (look.bottomId) {
+      addToCart(look.bottomId, look.color, selectedSize, 1)
     }
-    playSafe(standby)
-    standby.classList.add('is-active')
-    active.classList.remove('is-active')
-    const prev = active
-    active = standby
-    standby = prev
-    window.setTimeout(() => {
-      standby.pause()
-      try {
-        standby.currentTime = 0.001
-      } catch {
-        /* ignore */
+
+    addBtn.classList.add('is-added')
+    const originalContent = addBtn.innerHTML
+    addBtn.innerHTML = `
+      <span class="btn-shop-look__text">ADDED TO BAG</span>
+      <span class="btn-shop-look__icon" aria-hidden="true">✓</span>
+    `
+    setTimeout(() => {
+      addBtn.classList.remove('is-added')
+      addBtn.innerHTML = originalContent
+    }, 2000)
+
+    const cartOpenBtn = document.querySelector<HTMLButtonElement>('[data-cart-open]')
+    if (cartOpenBtn) {
+      cartOpenBtn.click()
+    }
+  })
+
+  // Smooth scroll
+  document.querySelectorAll<HTMLAnchorElement>('[data-scroll-to]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault()
+      const targetId = anchor.getAttribute('href')
+      if (targetId) {
+        const target = document.querySelector(targetId)
+        target?.scrollIntoView({ behavior: 'smooth' })
       }
-      swapping = false
-    }, 450)
-  }
+    })
+  })
 
-  const tick = () => {
-    if (Number.isFinite(active.duration) && active.duration > 0) {
-      if (!swapping && active.currentTime >= Math.max(0, active.duration - LEAD)) {
-        swap()
-      }
-    }
-    raf = requestAnimationFrame(tick)
-  }
-
-  syncSources()
-  playSafe(active)
-  if (active.readyState < 2) {
-    active.addEventListener('loadeddata', () => playSafe(active), { once: true })
-  }
-  raf = requestAnimationFrame(tick)
-
-  const onViewportChange = () => {
-    syncSources()
-    swapping = false
-    active.classList.add('is-active')
-    standby.classList.remove('is-active')
-    try {
-      active.currentTime = 0.001
-    } catch {
-      /* ignore */
-    }
-    playSafe(active)
-  }
-  mobileMq.addEventListener('change', onViewportChange)
-
+  // Clean up on pagehide
   window.addEventListener(
     'pagehide',
     () => {
-      cancelAnimationFrame(raf)
-      mobileMq.removeEventListener('change', onViewportChange)
+      cancelAnimationFrame(rafId)
     },
     { once: true },
   )
 }
 
-bindSeamlessHeroLoop()
+bindHeroLookInteractivity()

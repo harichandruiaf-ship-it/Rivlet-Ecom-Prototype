@@ -338,79 +338,80 @@ app.innerHTML = `<div data-page-content>
     </div>
   </section>
 
-  <!-- The 4 Promises Floating Trust Dock -->
-  <aside class="promises-dock" aria-label="Rivlet four climate-engineered promises">
-    <div class="promises-pill" role="region" aria-label="The 4 Rivlet Promises">
-      <a class="promises-pill__item" href="#promise-no-patch" data-scroll-to="#promise-no-patch" aria-label="No patch - Zoned sweat barriers">
-        <span class="promises-pill__icon-wrap" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9.5" stroke-opacity="0.9" />
-            <path d="M12 7c0 0-3.2 4.2-3.2 6.2a3.2 3.2 0 0 0 6.4 0c0-2-3.2-6.2-3.2-6.2z" />
-            <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
-          </svg>
-        </span>
-        <div class="promises-pill__text">
-          <strong class="promises-pill__title">NO PATCH</strong>
-          <span class="promises-pill__sub">(Zoned sweat-barriers)</span>
-        </div>
-      </a>
-
-      <span class="promises-pill__divider" aria-hidden="true"></span>
-
-      <a class="promises-pill__item" href="#promise-no-smell" data-scroll-to="#promise-no-smell" aria-label="No smell - Silver-ion freshness">
-        <span class="promises-pill__icon-wrap" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 5c-.7 1.8-.7 3.5 0 5.2" />
-            <path d="M12 4c-1 2.3-1 4.7 0 7" />
-            <path d="M16 5c-.7 1.8-.7 3.5 0 5.2" />
-            <path d="M5.5 17.5c2.5-1.5 5.5-1.5 8 0" />
-            <path d="M9.5 20.5c2-1.2 4.5-1.2 6.5 0" />
-            <line x1="4.8" y1="4.8" x2="19.2" y2="19.2" />
-          </svg>
-        </span>
-        <div class="promises-pill__text">
-          <strong class="promises-pill__title">NO SMELL</strong>
-          <span class="promises-pill__sub">(Silver-ion freshness)</span>
-        </div>
-      </a>
-
-      <span class="promises-pill__divider" aria-hidden="true"></span>
-
-      <a class="promises-pill__item" href="#promise-no-rub" data-scroll-to="#promise-no-rub" aria-label="No rub - Zero chafing">
-        <span class="promises-pill__icon-wrap" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 8c1.5-1.5 3.5-1.5 5 0l2 2c1.5 1.5 1.5 3.5 0 5" />
-            <path d="M17 16c-1.5 1.5-3.5 1.5-5 0l-2-2c-1.5-1.5-1.5-3.5 0-5" />
-            <line x1="4.8" y1="4.8" x2="19.2" y2="19.2" />
-          </svg>
-        </span>
-        <div class="promises-pill__text">
-          <strong class="promises-pill__title">NO RUB</strong>
-          <span class="promises-pill__sub">(Zero chafing)</span>
-        </div>
-      </a>
-
-      <span class="promises-pill__divider" aria-hidden="true"></span>
-
-      <a class="promises-pill__item" href="#promise-no-ride-up" data-scroll-to="#promise-no-ride-up" aria-label="No ride-up - No-slip bands">
-        <span class="promises-pill__icon-wrap" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 8c4-1 12-1 16 0" />
-            <path d="M4 16c4-1 12-1 16 0" />
-            <path d="M7 12h2M11 12h2M15 12h2" stroke-linecap="round" stroke-dasharray="0.1 3" stroke-width="2.5" />
-            <path d="M2.5 12l2-1.8m0 3.6l-2-1.8M21.5 12l-2-1.8m0 3.6l2-1.8" />
-          </svg>
-        </span>
-        <div class="promises-pill__text">
-          <strong class="promises-pill__title">NO RIDE-UP</strong>
-          <span class="promises-pill__sub">(No-slip bands)</span>
-        </div>
-      </a>
-    </div>
-  </aside>
-
   <section class="section friction-promise" id="the-friction" data-promise-section>
     <div id="the-promise" class="friction-promise__anchor" aria-hidden="true"></div>
+
+    <!-- The 4 Promises Floating Trust Dock -->
+    <aside class="promises-dock" aria-label="Rivlet four climate-engineered promises">
+      <div class="promises-pill" role="region" aria-label="The 4 Rivlet Promises">
+        <a class="promises-pill__item" href="#promise-no-patch" data-scroll-to="#promise-no-patch" aria-label="No patch - Zoned sweat barriers">
+          <span class="promises-pill__icon-wrap" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9.5" stroke-opacity="0.9" />
+              <path d="M12 7c0 0-3.2 4.2-3.2 6.2a3.2 3.2 0 0 0 6.4 0c0-2-3.2-6.2-3.2-6.2z" />
+              <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+            </svg>
+          </span>
+          <div class="promises-pill__text">
+            <strong class="promises-pill__title">NO PATCH</strong>
+            <span class="promises-pill__sub">(Zoned sweat-barriers)</span>
+          </div>
+        </a>
+
+        <span class="promises-pill__divider" aria-hidden="true"></span>
+
+        <a class="promises-pill__item" href="#promise-no-smell" data-scroll-to="#promise-no-smell" aria-label="No smell - Silver-ion freshness">
+          <span class="promises-pill__icon-wrap" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5c-.7 1.8-.7 3.5 0 5.2" />
+              <path d="M12 4c-1 2.3-1 4.7 0 7" />
+              <path d="M16 5c-.7 1.8-.7 3.5 0 5.2" />
+              <path d="M5.5 17.5c2.5-1.5 5.5-1.5 8 0" />
+              <path d="M9.5 20.5c2-1.2 4.5-1.2 6.5 0" />
+              <line x1="4.8" y1="4.8" x2="19.2" y2="19.2" />
+            </svg>
+          </span>
+          <div class="promises-pill__text">
+            <strong class="promises-pill__title">NO SMELL</strong>
+            <span class="promises-pill__sub">(Silver-ion freshness)</span>
+          </div>
+        </a>
+
+        <span class="promises-pill__divider" aria-hidden="true"></span>
+
+        <a class="promises-pill__item" href="#promise-no-rub" data-scroll-to="#promise-no-rub" aria-label="No rub - Zero chafing">
+          <span class="promises-pill__icon-wrap" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 8c1.5-1.5 3.5-1.5 5 0l2 2c1.5 1.5 1.5 3.5 0 5" />
+              <path d="M17 16c-1.5 1.5-3.5 1.5-5 0l-2-2c-1.5-1.5-1.5-3.5 0-5" />
+              <line x1="4.8" y1="4.8" x2="19.2" y2="19.2" />
+            </svg>
+          </span>
+          <div class="promises-pill__text">
+            <strong class="promises-pill__title">NO RUB</strong>
+            <span class="promises-pill__sub">(Zero chafing)</span>
+          </div>
+        </a>
+
+        <span class="promises-pill__divider" aria-hidden="true"></span>
+
+        <a class="promises-pill__item" href="#promise-no-ride-up" data-scroll-to="#promise-no-ride-up" aria-label="No ride-up - No-slip bands">
+          <span class="promises-pill__icon-wrap" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8c4-1 12-1 16 0" />
+              <path d="M4 16c4-1 12-1 16 0" />
+              <path d="M7 12h2M11 12h2M15 12h2" stroke-linecap="round" stroke-dasharray="0.1 3" stroke-width="2.5" />
+              <path d="M2.5 12l2-1.8m0 3.6l-2-1.8M21.5 12l-2-1.8m0 3.6l2-1.8" />
+            </svg>
+          </span>
+          <div class="promises-pill__text">
+            <strong class="promises-pill__title">NO RIDE-UP</strong>
+            <span class="promises-pill__sub">(No-slip bands)</span>
+          </div>
+        </a>
+      </div>
+    </aside>
+
     <div class="container container--wide">
       <div class="friction-promise__grid">
         <!-- Left: Editorial Problem & Technical Promise Narrative -->
@@ -429,7 +430,7 @@ app.innerHTML = `<div data-page-content>
           <div class="friction-promise__pillars" role="list">
             ${PROMISE_FILMS.map(
               (f, idx) => `
-              <div class="friction-promise__pillar" data-pillar="${f.id}" role="listitem" tabindex="0">
+              <div class="friction-promise__pillar ${idx === 0 ? 'is-active' : ''}" data-pillar="${f.id}" role="listitem" tabindex="0">
                 <span class="friction-promise__pillar-idx">0${idx + 1}</span>
                 <div class="friction-promise__pillar-body">
                   <strong class="friction-promise__pillar-title">${f.title}</strong>
@@ -446,23 +447,24 @@ app.innerHTML = `<div data-page-content>
               <span>EXPLORE THE COLLECTION</span>
               <span class="btn-arrow-icon" aria-hidden="true">↗</span>
             </a>
-            <a class="friction-promise__text-link" href="#situations" data-scroll-to=".situations">
+            <a class="friction-promise__text-link" href="#situations" data-scroll-to="#situations">
               <span>SHOP BY SITUATION</span>
               <span aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
 
-        <!-- Right: Bento Video Gallery (Matched to Reference) -->
+        <!-- Right: Interactive Expanding Video Gallery -->
         <div class="friction-promise__gallery" role="region" aria-label="Rivlet 4 Promises demonstration films">
-          <div class="friction-promise__bento">
+          <div class="friction-promise__accordion" data-promise-accordion>
             ${PROMISE_FILMS.map(
-              (f) => `
+              (f, idx) => `
               <article
-                class="promise-film promise-bento__card ${f.bentoClass}"
+                class="promise-film promise-accordion__card ${idx === 0 ? 'is-expanded' : ''}"
                 id="promise-${f.id}"
                 data-promise-id="${f.id}"
                 role="listitem"
+                tabindex="0"
                 aria-label="${f.title} - ${f.spec}"
               >
                 <div class="promise-film__media" aria-hidden="true">
@@ -476,9 +478,10 @@ app.innerHTML = `<div data-page-content>
                     data-src="${assetHref(f.src)}"
                   ></video>
                 </div>
-                <div class="promise-bento__scrim" aria-hidden="true"></div>
+                <div class="promise-accordion__scrim" aria-hidden="true"></div>
                 <div class="promise-bento__pill-badge">
                   <span class="promise-bento__badge-label">${f.title}</span>
+                  <span class="promise-bento__badge-sub">${f.spec}</span>
                 </div>
                 <div class="promise-bento__spec-pill" aria-hidden="true">
                   <span>${f.spec}</span>
@@ -491,7 +494,7 @@ app.innerHTML = `<div data-page-content>
     </div>
   </section>
 
-  <section class="section situations">
+  <section class="section situations" id="situations">
     <div class="container">
       <div class="section-head section-head--situations">
         <p class="eyebrow">Shop by situation</p>
@@ -951,14 +954,19 @@ function bindHeroLookInteractivity(): void {
   document.querySelectorAll<HTMLAnchorElement>('[data-scroll-to]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       e.preventDefault()
-      const targetId = anchor.getAttribute('href') || anchor.dataset.scrollTo
-      if (targetId) {
-        const target = document.querySelector(targetId)
+      const targetSelector = anchor.dataset.scrollTo || anchor.getAttribute('href')
+      if (targetSelector) {
+        const target = document.querySelector(targetSelector)
         if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-          if (target.classList.contains('promise-film') || target.classList.contains('promise-bento__card')) {
+          const isSection = target.tagName === 'SECTION' || target.classList.contains('situations')
+          target.scrollIntoView({ behavior: 'smooth', block: isSection ? 'start' : 'nearest', inline: 'center' })
+          if (target.classList.contains('promise-film') || target.classList.contains('promise-accordion__card')) {
             target.classList.add('is-highlighted')
             setTimeout(() => target.classList.remove('is-highlighted'), 2200)
+            const promiseId = (target as HTMLElement).dataset.promiseId
+            if (promiseId) {
+              window.dispatchEvent(new CustomEvent('expand-promise', { detail: { id: promiseId } }))
+            }
           }
         }
       }
@@ -977,48 +985,85 @@ function bindHeroLookInteractivity(): void {
 
 function bindFrictionPromiseInteractivity(): void {
   const pillars = document.querySelectorAll<HTMLElement>('.friction-promise__pillar')
-  const cards = document.querySelectorAll<HTMLElement>('.promise-bento__card')
+  const cards = document.querySelectorAll<HTMLElement>('.promise-accordion__card')
 
+  function setExpandedCard(targetId: string): void {
+    cards.forEach((card) => {
+      const isTarget = card.dataset.promiseId === targetId
+      card.classList.toggle('is-expanded', isTarget)
+      if (isTarget) {
+        const vid = card.querySelector<HTMLVideoElement>('video')
+        if (vid && vid.paused) {
+          vid.play().catch(() => {})
+        }
+      }
+    })
+    pillars.forEach((pillar) => {
+      const isTarget = pillar.dataset.pillar === targetId
+      pillar.classList.toggle('is-active', isTarget)
+    })
+  }
+
+  // Hover or focus cards: expanded card becomes big, other 3 become small
+  cards.forEach((card) => {
+    const promiseId = card.dataset.promiseId
+    if (!promiseId) return
+
+    card.addEventListener('mouseenter', () => {
+      setExpandedCard(promiseId)
+    })
+
+    card.addEventListener('click', () => {
+      setExpandedCard(promiseId)
+    })
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        setExpandedCard(promiseId)
+      }
+    })
+  })
+
+  // Hover or click pillars: expanding corresponding video
   pillars.forEach((pillar) => {
     const pillarId = pillar.dataset.pillar
     if (!pillarId) return
-    const targetCard = document.querySelector<HTMLElement>(`#promise-${pillarId}`)
-    if (!targetCard) return
 
     pillar.addEventListener('mouseenter', () => {
-      targetCard.classList.add('is-focused')
+      setExpandedCard(pillarId)
     })
-    pillar.addEventListener('mouseleave', () => {
-      targetCard.classList.remove('is-focused')
-    })
+
     pillar.addEventListener('click', () => {
-      targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-      targetCard.classList.add('is-highlighted')
-      setTimeout(() => targetCard.classList.remove('is-highlighted'), 2200)
-    })
-    pillar.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault()
+      setExpandedCard(pillarId)
+      const targetCard = document.querySelector<HTMLElement>(`#promise-${pillarId}`)
+      if (targetCard) {
         targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
         targetCard.classList.add('is-highlighted')
         setTimeout(() => targetCard.classList.remove('is-highlighted'), 2200)
       }
     })
+
+    pillar.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        setExpandedCard(pillarId)
+        const targetCard = document.querySelector<HTMLElement>(`#promise-${pillarId}`)
+        if (targetCard) {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+          targetCard.classList.add('is-highlighted')
+          setTimeout(() => targetCard.classList.remove('is-highlighted'), 2200)
+        }
+      }
+    })
   })
 
-  cards.forEach((card) => {
-    const promiseId = card.dataset.promiseId
-    if (!promiseId) return
-    const targetPillar = document.querySelector<HTMLElement>(`[data-pillar="${promiseId}"]`)
-    if (!targetPillar) return
-
-    card.addEventListener('mouseenter', () => {
-      targetPillar.classList.add('is-active')
-    })
-    card.addEventListener('mouseleave', () => {
-      targetPillar.classList.remove('is-active')
-    })
-  })
+  // External trigger from hero promises dock
+  window.addEventListener('expand-promise', ((e: CustomEvent<{ id: string }>) => {
+    if (e.detail?.id) {
+      setExpandedCard(e.detail.id)
+    }
+  }) as EventListener)
 }
 
 bindHeroLookInteractivity()

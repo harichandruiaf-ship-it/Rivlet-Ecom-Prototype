@@ -628,7 +628,7 @@
   z-index: 20;
   width: 100%;
   max-width: min(calc(100% - 2.5rem), 78rem);
-  margin: -1.75rem auto 0.75rem;
+  margin: -1.85rem auto clamp(1.75rem, 3.5vw, 2.75rem);
   padding-inline: 0.5rem;
 }
 
@@ -638,12 +638,10 @@
   justify-content: space-between;
   width: 100%;
   padding: 0.65rem 1.6rem;
-  background: rgba(250, 247, 242, 0.94);
-  backdrop-filter: blur(24px) saturate(1.2);
-  -webkit-backdrop-filter: blur(24px) saturate(1.2);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: #FAF7F2; /* Pure, 100% solid opaque luxury ivory - no hero banner bleed-through */
+  border: 1px solid rgba(122, 92, 58, 0.18);
   border-radius: 9999px;
-  box-shadow: 0 14px 40px rgba(20, 14, 8, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 12px 36px rgba(20, 14, 8, 0.1), 0 2px 6px rgba(0, 0, 0, 0.04);
   transition: box-shadow var(--duration) var(--ease-out), transform var(--duration) var(--ease-out);
 }
 
@@ -884,14 +882,10 @@
 
 .friction-promise {
   position: relative;
-  background-color: var(--color-canvas);
-  background-image:
-    radial-gradient(ellipse at 85% 15%, rgba(122, 92, 58, 0.06) 0%, transparent 55%),
-    radial-gradient(ellipse at 15% 85%, rgba(12, 30, 52, 0.04) 0%, transparent 60%);
-  padding-top: clamp(1rem, 2vw, 1.75rem);
+  background: var(--color-canvas);
+  padding-top: 0;
   padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
   border-bottom: 1px solid var(--color-line);
-  overflow: hidden;
 }
 
 .friction-promise__anchor {
@@ -1125,24 +1119,24 @@
   border-bottom-color: var(--color-cardamom);
 }
 
-/* --- Right Column: Bento Video Gallery (Reference Matched) --- */
+/* --- Right Column: Interactive Expanding Video Gallery --- */
 .friction-promise__gallery {
   position: relative;
   width: 100%;
 }
 
-.friction-promise__bento {
-  display: grid;
-  grid-template-columns: 1.08fr 1fr 1.08fr;
-  grid-template-rows: 255px 255px;
-  gap: 16px;
+.friction-promise__accordion {
+  display: flex;
+  gap: 12px;
   width: 100%;
-  min-height: 526px;
+  height: 520px;
+  align-items: stretch;
 }
 
-.promise-bento__card {
+.promise-accordion__card {
   position: relative;
-  min-height: 0;
+  flex: 0.72;
+  min-width: 0;
   height: 100%;
   border-radius: 20px;
   overflow: hidden;
@@ -1151,38 +1145,19 @@
   cursor: pointer;
   scroll-margin-top: 100px;
   box-shadow: 0 8px 24px rgba(14, 11, 7, 0.08);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: flex 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.promise-bento__card--tall-left {
-  grid-column: 1;
-  grid-row: 1 / 3;
+/* Hover or Active State: BIG, expanded video hero */
+.promise-accordion__card.is-expanded {
+  flex: 3.1;
+  box-shadow: 0 20px 48px rgba(14, 11, 7, 0.24), 0 0 0 1px rgba(122, 92, 58, 0.4);
 }
 
-.promise-bento__card--center-top {
-  grid-column: 2;
-  grid-row: 1 / 2;
-}
-
-.promise-bento__card--center-bottom {
-  grid-column: 2;
-  grid-row: 2 / 3;
-}
-
-.promise-bento__card--tall-right {
-  grid-column: 3;
-  grid-row: 1 / 3;
-}
-
-.promise-bento__card:hover,
-.promise-bento__card.is-focused {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 36px rgba(14, 11, 7, 0.18), 0 0 0 1px rgba(122, 92, 58, 0.35);
-}
-
-.promise-bento__card.is-highlighted {
-  box-shadow: 0 0 0 3px var(--color-cardamom), 0 20px 48px rgba(122, 92, 58, 0.42);
-  transform: translateY(-6px);
+.promise-accordion__card.is-highlighted {
+  box-shadow: 0 0 0 3px var(--color-cardamom), 0 24px 54px rgba(122, 92, 58, 0.45);
   animation: pulseHighlight 2.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1207,26 +1182,35 @@
   object-position: center;
   display: block;
   transform: scale(1.02);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.promise-bento__card:hover .promise-film__video,
-.promise-bento__card.is-focused .promise-film__video {
-  transform: scale(1.06);
+.promise-accordion__card.is-expanded .promise-film__video {
+  transform: scale(1.05);
 }
 
-/* Subtle dark vignette at the bottom for pill badge contrast */
-.promise-bento__scrim {
+/* Subtle dark scrim on cards: slightly deeper on contracted ones, clear on expanded */
+.promise-accordion__scrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(14, 11, 7, 0.02) 0%,
-    rgba(14, 11, 7, 0.14) 45%,
+    rgba(14, 11, 7, 0.04) 0%,
+    rgba(14, 11, 7, 0.16) 45%,
     rgba(14, 11, 7, 0.68) 100%
   );
   pointer-events: none;
   z-index: 1;
+  transition: background 0.45s ease;
+}
+
+.promise-accordion__card:not(.is-expanded) .promise-accordion__scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 11, 7, 0.22) 0%,
+    rgba(14, 11, 7, 0.36) 50%,
+    rgba(14, 11, 7, 0.76) 100%
+  );
 }
 
 /* Frosted Glass Pill Badge: Reference-matched styling */
@@ -1235,23 +1219,24 @@
   bottom: 16px;
   left: 16px;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.32);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.48);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14);
   border-radius: 9999px;
   padding: 0.42rem 1.15rem;
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
   pointer-events: none;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.promise-bento__card:hover .promise-bento__pill-badge,
-.promise-bento__card.is-focused .promise-bento__pill-badge {
-  background: rgba(255, 255, 255, 0.38);
-  border-color: rgba(255, 255, 255, 0.7);
+.promise-accordion__card.is-expanded .promise-bento__pill-badge {
+  background: rgba(255, 255, 255, 0.44);
+  border-color: rgba(255, 255, 255, 0.78);
   box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
@@ -1265,6 +1250,22 @@
   letter-spacing: 0.02em;
   line-height: 1.1;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.promise-bento__badge-sub {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 252, 247, 0.9);
+  display: none;
+  padding-left: 0.45rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.promise-accordion__card.is-expanded .promise-bento__badge-sub {
+  display: inline-block;
 }
 
 /* Top-right subtle tech specification badge */
@@ -1287,13 +1288,20 @@
   color: rgba(255, 252, 247, 0.88);
   pointer-events: none;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.promise-bento__card:hover .promise-bento__spec-pill,
-.promise-bento__card.is-focused .promise-bento__spec-pill {
-  background: rgba(122, 92, 58, 0.85);
-  border-color: rgba(255, 255, 255, 0.3);
+.promise-accordion__card.is-expanded .promise-bento__spec-pill {
+  background: rgba(122, 92, 58, 0.88);
+  border-color: rgba(255, 255, 255, 0.35);
   color: #fffcf7;
+  opacity: 1;
+  transform: none;
+}
+
+.promise-accordion__card:not(.is-expanded) .promise-bento__spec-pill {
+  opacity: 0;
+  transform: translateY(-4px);
 }
 
 /* Tablet & Intermediate Viewports (641px - 991px) */
@@ -1302,18 +1310,20 @@
     max-width: 100%;
   }
 
-  .friction-promise__bento {
-    grid-template-columns: 1.08fr 1fr 1.08fr;
-    grid-template-rows: 215px 215px;
-    gap: 12px;
-    min-height: 442px;
+  .friction-promise__accordion {
+    height: 440px;
+    gap: 10px;
   }
 }
 
 /* Mobile Viewport (< 640px): Fluid Touch-Friendly Snap Carousel */
 @media (max-width: 640px) {
+  .promises-dock {
+    margin: -1.5rem auto 1.25rem;
+  }
+
   .friction-promise {
-    padding-top: 0.85rem;
+    padding-top: 0;
     padding-bottom: 2.75rem;
   }
 
@@ -1354,36 +1364,36 @@
     overflow: hidden;
   }
 
-  .friction-promise__bento {
+  .friction-promise__accordion {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 12px;
-    min-height: auto;
+    height: 380px;
     padding-bottom: 12px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
 
-  .friction-promise__bento::-webkit-scrollbar {
+  .friction-promise__accordion::-webkit-scrollbar {
     display: none;
   }
 
-  .promise-bento__card {
+  .promise-accordion__card {
     flex: 0 0 76vw;
     max-width: 290px;
-    height: 380px !important;
-    min-height: 380px !important;
+    height: 100%;
     scroll-snap-align: center;
     border-radius: 18px;
   }
 
-  .promise-bento__card--tall-left,
-  .promise-bento__card--center-top,
-  .promise-bento__card--center-bottom,
-  .promise-bento__card--tall-right {
-    grid-column: auto;
-    grid-row: auto;
+  .promise-accordion__card.is-expanded {
+    flex: 0 0 76vw;
+  }
+
+  .promise-accordion__card:not(.is-expanded) .promise-bento__spec-pill {
+    opacity: 1;
+    transform: none;
   }
 
   .promise-bento__pill-badge {

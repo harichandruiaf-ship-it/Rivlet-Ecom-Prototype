@@ -130,26 +130,34 @@ const PROMISE_FILMS = [
   {
     id: 'no-patch',
     title: 'No patch',
-    blurb: 'Zoned sweat-barriers. Outer face stays dry.',
+    spec: 'Zoned sweat-barriers',
+    shortBenefit: 'Zoned barriers keep outer face dry',
     src: 'media/promise/no-patch.mp4',
+    bentoClass: 'promise-bento__card--tall-left',
   },
   {
     id: 'no-smell',
     title: 'No smell',
-    blurb: 'Silver-ion freshness engineered at fibre level.',
+    spec: 'Silver-ion freshness',
+    shortBenefit: 'Silver-ion anti-odor at fibre level',
     src: 'media/promise/no-smell.mp4',
+    bentoClass: 'promise-bento__card--center-top',
   },
   {
     id: 'no-rub',
     title: 'No rub',
-    blurb: 'Seamless where chafe starts.',
+    spec: 'Zero chafing',
+    shortBenefit: 'Friction-free seamless construction',
     src: 'media/promise/no-rub.mp4',
+    bentoClass: 'promise-bento__card--center-bottom',
   },
   {
     id: 'no-ride-up',
     title: 'No ride-up',
-    blurb: 'No-roll bands. Stay put.',
+    spec: 'No-slip bands',
+    shortBenefit: 'Stay-put bands that never roll',
     src: 'media/promise/no-ride-up.mp4',
+    bentoClass: 'promise-bento__card--tall-right',
   },
 ] as const
 
@@ -401,44 +409,85 @@ app.innerHTML = `<div data-page-content>
     </div>
   </aside>
 
-  <section class="section" id="the-friction">
-    <div class="container">
-      <div class="section-head section-head--friction">
-        <p class="eyebrow">The friction</p>
-        <h2 class="display">Western activewear wasn’t built for this climate.</h2>
-        <p class="lede">In humidity, sweat doesn’t leave - it spreads. Waistbands stay damp. Underarms yellow. Anxiety stays on the body all day.</p>
-      </div>
-    </div>
-  </section>
+  <section class="section friction-promise" id="the-friction" data-promise-section>
+    <div id="the-promise" class="friction-promise__anchor" aria-hidden="true"></div>
+    <div class="container container--wide">
+      <div class="friction-promise__grid">
+        <!-- Left: Editorial Problem & Technical Promise Narrative -->
+        <div class="friction-promise__content">
+          <div class="friction-promise__eyebrow-wrap">
+            <span class="friction-promise__badge-dot" aria-hidden="true"></span>
+            <span class="friction-promise__eyebrow">THE FRICTION &amp; THE PROMISE</span>
+          </div>
 
-  <section class="section section--ink promise ocean-band" id="the-promise">
-    <div class="container">
-      <div class="section-head section-head--promise">
-        <p class="eyebrow">The promise</p>
-        <h2 class="display">Lead with the feeling. Prove with the tech.</h2>
+          <h2 class="display friction-promise__headline">Western activewear wasn’t built for this climate.</h2>
+
+          <p class="friction-promise__lede">
+            In tropical humidity, sweat spreads and synthetics cling. We engineered four non-negotiable promises so your kit stays weightless, dry, and completely invisible on skin.
+          </p>
+
+          <div class="friction-promise__pillars" role="list">
+            ${PROMISE_FILMS.map(
+              (f, idx) => `
+              <div class="friction-promise__pillar" data-pillar="${f.id}" role="listitem" tabindex="0">
+                <span class="friction-promise__pillar-idx">0${idx + 1}</span>
+                <div class="friction-promise__pillar-body">
+                  <strong class="friction-promise__pillar-title">${f.title}</strong>
+                  <span class="friction-promise__pillar-dot" aria-hidden="true">·</span>
+                  <span class="friction-promise__pillar-short">${f.shortBenefit}</span>
+                </div>
+                <span class="friction-promise__pillar-arrow" aria-hidden="true">↗</span>
+              </div>`,
+            ).join('')}
+          </div>
+
+          <div class="friction-promise__cta-row">
+            <a class="btn-editorial-explore" href="${shopHref()}">
+              <span>EXPLORE THE COLLECTION</span>
+              <span class="btn-arrow-icon" aria-hidden="true">↗</span>
+            </a>
+            <a class="friction-promise__text-link" href="#situations" data-scroll-to=".situations">
+              <span>SHOP BY SITUATION</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Bento Video Gallery (Matched to Reference) -->
+        <div class="friction-promise__gallery" role="region" aria-label="Rivlet 4 Promises demonstration films">
+          <div class="friction-promise__bento">
+            ${PROMISE_FILMS.map(
+              (f) => `
+              <article
+                class="promise-film promise-bento__card ${f.bentoClass}"
+                id="promise-${f.id}"
+                data-promise-id="${f.id}"
+                role="listitem"
+                aria-label="${f.title} - ${f.spec}"
+              >
+                <div class="promise-film__media" aria-hidden="true">
+                  <video
+                    class="promise-film__video"
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    data-promise-video
+                    data-src="${assetHref(f.src)}"
+                  ></video>
+                </div>
+                <div class="promise-bento__scrim" aria-hidden="true"></div>
+                <div class="promise-bento__pill-badge">
+                  <span class="promise-bento__badge-label">${f.title}</span>
+                </div>
+                <div class="promise-bento__spec-pill" aria-hidden="true">
+                  <span>${f.spec}</span>
+                </div>
+              </article>`,
+            ).join('')}
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="promise-runway" role="list">
-      ${PROMISE_FILMS.map(
-        (f) => `
-        <article class="promise-film" role="listitem" id="promise-${f.id}" aria-label="${f.title}">
-          <div class="promise-film__media" aria-hidden="true">
-            <video
-              class="promise-film__video"
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              data-promise-video
-              data-src="${assetHref(f.src)}"
-            ></video>
-          </div>
-          <div class="promise-film__meta">
-            <h3 class="promise-film__title">${f.title}</h3>
-            <p class="promise-film__blurb">${f.blurb}</p>
-          </div>
-        </article>`,
-      ).join('')}
     </div>
   </section>
 
@@ -902,12 +951,12 @@ function bindHeroLookInteractivity(): void {
   document.querySelectorAll<HTMLAnchorElement>('[data-scroll-to]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       e.preventDefault()
-      const targetId = anchor.getAttribute('href')
+      const targetId = anchor.getAttribute('href') || anchor.dataset.scrollTo
       if (targetId) {
         const target = document.querySelector(targetId)
         if (target) {
-          target.scrollIntoView({ behavior: 'smooth' })
-          if (target.classList.contains('promise-film')) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+          if (target.classList.contains('promise-film') || target.classList.contains('promise-bento__card')) {
             target.classList.add('is-highlighted')
             setTimeout(() => target.classList.remove('is-highlighted'), 2200)
           }
@@ -926,4 +975,51 @@ function bindHeroLookInteractivity(): void {
   )
 }
 
+function bindFrictionPromiseInteractivity(): void {
+  const pillars = document.querySelectorAll<HTMLElement>('.friction-promise__pillar')
+  const cards = document.querySelectorAll<HTMLElement>('.promise-bento__card')
+
+  pillars.forEach((pillar) => {
+    const pillarId = pillar.dataset.pillar
+    if (!pillarId) return
+    const targetCard = document.querySelector<HTMLElement>(`#promise-${pillarId}`)
+    if (!targetCard) return
+
+    pillar.addEventListener('mouseenter', () => {
+      targetCard.classList.add('is-focused')
+    })
+    pillar.addEventListener('mouseleave', () => {
+      targetCard.classList.remove('is-focused')
+    })
+    pillar.addEventListener('click', () => {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+      targetCard.classList.add('is-highlighted')
+      setTimeout(() => targetCard.classList.remove('is-highlighted'), 2200)
+    })
+    pillar.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+        targetCard.classList.add('is-highlighted')
+        setTimeout(() => targetCard.classList.remove('is-highlighted'), 2200)
+      }
+    })
+  })
+
+  cards.forEach((card) => {
+    const promiseId = card.dataset.promiseId
+    if (!promiseId) return
+    const targetPillar = document.querySelector<HTMLElement>(`[data-pillar="${promiseId}"]`)
+    if (!targetPillar) return
+
+    card.addEventListener('mouseenter', () => {
+      targetPillar.classList.add('is-active')
+    })
+    card.addEventListener('mouseleave', () => {
+      targetPillar.classList.remove('is-active')
+    })
+  })
+}
+
 bindHeroLookInteractivity()
+bindFrictionPromiseInteractivity()

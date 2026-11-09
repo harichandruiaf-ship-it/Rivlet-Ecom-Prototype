@@ -628,7 +628,7 @@
   z-index: 20;
   width: 100%;
   max-width: min(calc(100% - 2.5rem), 78rem);
-  margin: -1.75rem auto 3.5rem;
+  margin: -1.75rem auto 0.75rem;
   padding-inline: 0.5rem;
 }
 
@@ -729,7 +729,7 @@
 
 @media (max-width: 899px) {
   .promises-dock {
-    margin: -1.5rem auto 2.5rem;
+    margin: -1.5rem auto 0.5rem;
     padding-inline: 0.75rem;
     max-width: 100%;
   }
@@ -876,46 +876,328 @@
   color: #fffcf7;
 }
 
-/* The Promise: film grid on Circle ocean canvas */
-.promise {
-  padding-bottom: 0;
-}
+/* ==========================================================================
+   The Friction & The Promise: Combined Split Editorial Section
+   Left: Editorial copy & technical pillars narrative
+   Right: 3-Column Bento Video Grid with Frosted Glass Badges (Reference-matched)
+   ========================================================================== */
 
-.section-head--promise {
-  max-width: 32rem;
-  margin-bottom: var(--space-7);
-}
-
-.promise-runway {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
-  width: 100%;
-  padding-inline: var(--pad-page);
-  padding-bottom: var(--pad-section);
-}
-
-.promise-film {
+.friction-promise {
   position: relative;
-  display: grid;
-  align-content: end;
-  min-height: clamp(16rem, 48vw, 22rem);
+  background-color: var(--color-canvas);
+  background-image:
+    radial-gradient(ellipse at 85% 15%, rgba(122, 92, 58, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 85%, rgba(12, 30, 52, 0.04) 0%, transparent 60%);
+  padding-top: clamp(1rem, 2vw, 1.75rem);
+  padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+  border-bottom: 1px solid var(--color-line);
   overflow: hidden;
-  background: #06101c;
-  color: #fffcf7;
-  isolation: isolate;
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
 }
 
-.promise-film.is-highlighted {
-  box-shadow: 0 0 0 2px var(--color-cardamom-soft), 0 20px 48px rgba(0, 0, 0, 0.45);
+.friction-promise__anchor {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.container--wide {
+  width: min(100% - (var(--pad-page) * 2), 82rem);
+  margin-inline: auto;
+}
+
+.friction-promise__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 4vw, 4.5rem);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .friction-promise__grid {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.35fr);
+    gap: clamp(2.75rem, 4.5vw, 4.75rem);
+    align-items: center;
+  }
+}
+
+/* --- Left Column: Content Narrative --- */
+.friction-promise__content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.4rem, 2.2vw, 2rem);
+  max-width: 36rem;
+}
+
+.friction-promise__eyebrow-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.friction-promise__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-cardamom);
+  box-shadow: 0 0 0 3px rgba(122, 92, 58, 0.18);
+  animation: pulseDot 3s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.friction-promise__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-cardamom);
+  margin: 0;
+}
+
+.friction-promise__headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.friction-promise__lede {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  margin: 0;
+  max-width: 32rem;
+}
+
+/* 4 Technical Pillars: sleek, short, scannable interactive rows */
+.friction-promise__pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.15rem;
+}
+
+.friction-promise__pillar {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.72rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 252, 247, 0.65);
+  border: 1px solid rgba(14, 11, 7, 0.08);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.friction-promise__pillar:hover,
+.friction-promise__pillar.is-active {
+  background: var(--color-surface);
+  border-color: rgba(122, 92, 58, 0.35);
+  box-shadow: 0 4px 16px rgba(122, 92, 58, 0.1);
+  transform: translateX(4px);
+}
+
+.friction-promise__pillar-idx {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-cardamom);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.friction-promise__pillar-body {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.friction-promise__pillar-title {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.friction-promise__pillar-dot {
+  color: var(--color-cardamom);
+  opacity: 0.6;
+}
+
+.friction-promise__pillar-short {
+  font-size: 0.84rem;
+  color: var(--color-ink-muted);
+  line-height: 1.35;
+}
+
+.friction-promise__pillar-arrow {
+  font-size: 0.85rem;
+  color: var(--color-cardamom);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.friction-promise__pillar:hover .friction-promise__pillar-arrow,
+.friction-promise__pillar.is-active .friction-promise__pillar-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Action CTA row */
+.friction-promise__cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-editorial-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--color-ink);
+  color: #FAF7F2;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(14, 11, 7, 0.15);
+}
+
+.btn-editorial-explore:hover {
+  background: #241c12;
+  color: #FAF7F2;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(14, 11, 7, 0.22);
+}
+
+.btn-arrow-icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-editorial-explore:hover .btn-arrow-icon {
+  transform: translate(2px, -2px);
+}
+
+.friction-promise__text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(14, 11, 7, 0.25);
+  padding-bottom: 2px;
+  transition: all 0.25s ease;
+}
+
+.friction-promise__text-link:hover {
+  color: var(--color-cardamom);
+  border-bottom-color: var(--color-cardamom);
+}
+
+/* --- Right Column: Bento Video Gallery (Reference Matched) --- */
+.friction-promise__gallery {
+  position: relative;
+  width: 100%;
+}
+
+.friction-promise__bento {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr 1.08fr;
+  grid-template-rows: 255px 255px;
+  gap: 16px;
+  width: 100%;
+  min-height: 526px;
+}
+
+.promise-bento__card {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0e0b07;
+  isolation: isolate;
+  cursor: pointer;
+  scroll-margin-top: 100px;
+  box-shadow: 0 8px 24px rgba(14, 11, 7, 0.08);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.promise-bento__card--tall-left {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.promise-bento__card--center-top {
+  grid-column: 2;
+  grid-row: 1 / 2;
+}
+
+.promise-bento__card--center-bottom {
+  grid-column: 2;
+  grid-row: 2 / 3;
+}
+
+.promise-bento__card--tall-right {
+  grid-column: 3;
+  grid-row: 1 / 3;
+}
+
+.promise-bento__card:hover,
+.promise-bento__card.is-focused {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(14, 11, 7, 0.18), 0 0 0 1px rgba(122, 92, 58, 0.35);
+}
+
+.promise-bento__card.is-highlighted {
+  box-shadow: 0 0 0 3px var(--color-cardamom), 0 20px 48px rgba(122, 92, 58, 0.42);
   transform: translateY(-6px);
+  animation: pulseHighlight 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pulseHighlight {
+  0% { box-shadow: 0 0 0 0 rgba(122, 92, 58, 0.7), 0 20px 48px rgba(122, 92, 58, 0.42); }
+  40% { box-shadow: 0 0 0 5px rgba(122, 92, 58, 0.9), 0 24px 52px rgba(122, 92, 58, 0.5); }
+  100% { box-shadow: 0 0 0 3px var(--color-cardamom), 0 20px 48px rgba(122, 92, 58, 0.42); }
 }
 
 .promise-film__media {
   position: absolute;
   inset: 0;
   z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .promise-film__video {
@@ -925,94 +1207,193 @@
   object-position: center;
   display: block;
   transform: scale(1.02);
-  transition: transform var(--duration-slow) var(--ease-out);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.promise-film__media::after {
-  content: '';
+.promise-bento__card:hover .promise-film__video,
+.promise-bento__card.is-focused .promise-film__video {
+  transform: scale(1.06);
+}
+
+/* Subtle dark vignette at the bottom for pill badge contrast */
+.promise-bento__scrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(6, 16, 28, 0.12) 0%,
-    rgba(6, 16, 28, 0.2) 40%,
-    rgba(6, 16, 28, 0.78) 100%
+    rgba(14, 11, 7, 0.02) 0%,
+    rgba(14, 11, 7, 0.14) 45%,
+    rgba(14, 11, 7, 0.68) 100%
   );
   pointer-events: none;
-}
-
-.promise-film__meta {
-  position: relative;
   z-index: 1;
-  display: grid;
-  gap: 0.4rem;
-  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+/* Frosted Glass Pill Badge: Reference-matched styling */
+.promise-bento__pill-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.26);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14);
+  border-radius: 9999px;
+  padding: 0.42rem 1.15rem;
+  display: inline-flex;
+  align-items: center;
   pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.promise-film__title {
+.promise-bento__card:hover .promise-bento__pill-badge,
+.promise-bento__card.is-focused .promise-bento__pill-badge {
+  background: rgba(255, 255, 255, 0.38);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.promise-bento__badge-label {
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3.8vw, 1.85rem);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
   font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
   color: #fffcf7;
-  margin: 0;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-.promise-film__blurb {
-  margin: 0;
-  max-width: 22ch;
-  font-size: var(--text-sm);
-  line-height: 1.4;
-  color: rgba(255, 252, 247, 0.78);
+/* Top-right subtle tech specification badge */
+.promise-bento__spec-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  background: rgba(14, 11, 7, 0.58);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  padding: 0.25rem 0.65rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 252, 247, 0.88);
+  pointer-events: none;
+  transition: all 0.3s ease;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .promise-film:hover .promise-film__video {
-    transform: scale(1.05);
+.promise-bento__card:hover .promise-bento__spec-pill,
+.promise-bento__card.is-focused .promise-bento__spec-pill {
+  background: rgba(122, 92, 58, 0.85);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fffcf7;
+}
+
+/* Tablet & Intermediate Viewports (641px - 991px) */
+@media (min-width: 641px) and (max-width: 991px) {
+  .friction-promise__content {
+    max-width: 100%;
+  }
+
+  .friction-promise__bento {
+    grid-template-columns: 1.08fr 1fr 1.08fr;
+    grid-template-rows: 215px 215px;
+    gap: 12px;
+    min-height: 442px;
   }
 }
 
-@media (min-width: 800px) {
-  .promise {
-    padding-bottom: var(--pad-section);
+/* Mobile Viewport (< 640px): Fluid Touch-Friendly Snap Carousel */
+@media (max-width: 640px) {
+  .friction-promise {
+    padding-top: 0.85rem;
+    padding-bottom: 2.75rem;
   }
 
-  .section-head--promise {
-    margin-bottom: var(--space-8);
+  .friction-promise__grid {
+    gap: 2rem;
   }
 
-  .promise-runway {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-3);
-    padding-bottom: 0;
-    min-height: min(62vh, 36rem);
+  .friction-promise__headline {
+    font-size: 1.95rem;
   }
 
-  .promise-film {
-    min-height: 100%;
-    height: min(62vh, 36rem);
+  .friction-promise__lede {
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 
-  .promise-film__title {
-    font-size: clamp(1.45rem, 1.7vw, 2rem);
+  .friction-promise__pillars {
+    gap: 0.5rem;
   }
 
-  .promise-film__blurb {
-    max-width: 18ch;
+  .friction-promise__pillar {
+    padding: 0.65rem 0.85rem;
+    gap: 0.65rem;
+  }
+
+  .friction-promise__pillar-title {
+    font-size: 1.05rem;
+  }
+
+  .friction-promise__pillar-short {
     font-size: 0.8rem;
   }
-}
 
-@media (min-width: 1200px) {
-  .promise-runway {
-    gap: var(--space-4);
-    min-height: min(66vh, 40rem);
+  .friction-promise__gallery {
+    margin-inline: calc(var(--pad-page) * -1);
+    width: calc(100% + (var(--pad-page) * 2));
+    padding-inline: var(--pad-page);
+    overflow: hidden;
   }
 
-  .promise-film {
-    height: min(66vh, 40rem);
+  .friction-promise__bento {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 12px;
+    min-height: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .friction-promise__bento::-webkit-scrollbar {
+    display: none;
+  }
+
+  .promise-bento__card {
+    flex: 0 0 76vw;
+    max-width: 290px;
+    height: 380px !important;
+    min-height: 380px !important;
+    scroll-snap-align: center;
+    border-radius: 18px;
+  }
+
+  .promise-bento__card--tall-left,
+  .promise-bento__card--center-top,
+  .promise-bento__card--center-bottom,
+  .promise-bento__card--tall-right {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .promise-bento__pill-badge {
+    bottom: 14px;
+    left: 14px;
+    padding: 0.35rem 0.95rem;
+  }
+
+  .promise-bento__badge-label {
+    font-size: 1.05rem;
   }
 }
 

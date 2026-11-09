@@ -626,15 +626,15 @@ app.innerHTML = `<div data-page-content>
   </section>
 
   <section class="section why-holds" id="why-it-holds">
-    <div class="container container--wide">
-      <div class="why-holds__head">
-        <p class="why-holds__eyebrow">WHY IT HOLDS</p>
-        <h2 class="display why-holds__headline">Built for the climate you live in.</h2>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Why it holds</p>
+        <h2 class="display">Built for the climate you live in.</h2>
       </div>
       <div class="why-holds__grid">
         <div class="why-holds__card">
           <div class="why-holds__icon" aria-hidden="true">
-            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="56" height="56" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Waist & Torso Proportions -->
               <path d="M19 8 C22 18, 25 28, 20 38 C16 46, 13 54, 13 64" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
               <path d="M53 8 C50 18, 47 28, 52 38 C56 46, 59 54, 59 64" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
@@ -661,7 +661,7 @@ app.innerHTML = `<div data-page-content>
 
         <div class="why-holds__card">
           <div class="why-holds__icon" aria-hidden="true">
-            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="56" height="56" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Center Water Droplet -->
               <path d="M36 10 C36 10, 27 22, 27 28 A9 9 0 0 0 45 28 C45 22, 36 10, 36 10 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
               <!-- Left Droplet -->
@@ -680,7 +680,7 @@ app.innerHTML = `<div data-page-content>
 
         <div class="why-holds__card">
           <div class="why-holds__icon" aria-hidden="true">
-            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="56" height="56" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Botanical Leaf on Left -->
               <path d="M10 50 C10 32, 22 18, 35 18 C35 37, 23 50, 10 50 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
               <path d="M10 50 C18 42, 26 33, 35 18" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>

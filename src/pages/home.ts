@@ -346,10 +346,9 @@ app.innerHTML = `<div data-page-content>
       <div class="promises-pill" role="region" aria-label="The 4 Rivlet Promises">
         <a class="promises-pill__item" href="#promise-no-patch" data-scroll-to="#promise-no-patch" aria-label="No patch - Zoned sweat barriers">
           <span class="promises-pill__icon-wrap" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9.5" stroke-opacity="0.9" />
-              <path d="M12 7c0 0-3.2 4.2-3.2 6.2a3.2 3.2 0 0 0 6.4 0c0-2-3.2-6.2-3.2-6.2z" />
-              <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.8 C12 2.8 5.5 10 5.5 15 A6.5 6.5 0 0 0 18.5 15 C18.5 10 12 2.8 12 2.8 Z" />
+              <line x1="3.5" y1="3.5" x2="20.5" y2="20.5" />
             </svg>
           </span>
           <div class="promises-pill__text">
@@ -362,13 +361,11 @@ app.innerHTML = `<div data-page-content>
 
         <a class="promises-pill__item" href="#promise-no-smell" data-scroll-to="#promise-no-smell" aria-label="No smell - Silver-ion freshness">
           <span class="promises-pill__icon-wrap" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M8 5c-.7 1.8-.7 3.5 0 5.2" />
-              <path d="M12 4c-1 2.3-1 4.7 0 7" />
-              <path d="M16 5c-.7 1.8-.7 3.5 0 5.2" />
-              <path d="M5.5 17.5c2.5-1.5 5.5-1.5 8 0" />
-              <path d="M9.5 20.5c2-1.2 4.5-1.2 6.5 0" />
-              <line x1="4.8" y1="4.8" x2="19.2" y2="19.2" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6.5 6 C7.5 7.8 7.5 10.2 6.5 12 C5.5 13.8 5.5 16.2 6.5 18" />
+              <path d="M12 4 C13.2 6.5 13.2 9.5 12 12 C10.8 14.5 10.8 17.5 12 20" />
+              <path d="M17.5 6 C18.5 7.8 18.5 10.2 17.5 12 C16.5 13.8 16.5 16.2 17.5 18" />
+              <line x1="3.5" y1="3.5" x2="20.5" y2="20.5" />
             </svg>
           </span>
           <div class="promises-pill__text">
@@ -381,10 +378,9 @@ app.innerHTML = `<div data-page-content>
 
         <a class="promises-pill__item" href="#promise-no-rub" data-scroll-to="#promise-no-rub" aria-label="No rub - Zero chafing">
           <span class="promises-pill__icon-wrap" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 8c1.5-1.5 3.5-1.5 5 0l2 2c1.5 1.5 1.5 3.5 0 5" />
-              <path d="M17 16c-1.5 1.5-3.5 1.5-5 0l-2-2c-1.5-1.5-1.5-3.5 0-5" />
-              <line x1="4.8" y1="4.8" x2="19.2" y2="19.2" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.2 3.8 C13.5 3.8 8.5 7.8 6.5 12.8 L5.5 18.5 L11.2 17.5 C16.2 15.5 20.2 10.5 20.2 3.8 Z" />
+              <path d="M6 18 L13.5 10.5" />
             </svg>
           </span>
           <div class="promises-pill__text">
@@ -397,11 +393,10 @@ app.innerHTML = `<div data-page-content>
 
         <a class="promises-pill__item" href="#promise-no-ride-up" data-scroll-to="#promise-no-ride-up" aria-label="No ride-up - No-slip bands">
           <span class="promises-pill__icon-wrap" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 8c4-1 12-1 16 0" />
-              <path d="M4 16c4-1 12-1 16 0" />
-              <path d="M7 12h2M11 12h2M15 12h2" stroke-linecap="round" stroke-dasharray="0.1 3" stroke-width="2.5" />
-              <path d="M2.5 12l2-1.8m0 3.6l-2-1.8M21.5 12l-2-1.8m0 3.6l2-1.8" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 18 V6 M6.5 11.5 L12 5.5 L17.5 11.5" />
+              <line x1="4" y1="19.5" x2="20" y2="19.5" />
+              <line x1="3.5" y1="3.5" x2="20.5" y2="20.5" />
             </svg>
           </span>
           <div class="promises-pill__text">
@@ -634,25 +629,24 @@ app.innerHTML = `<div data-page-content>
       <div class="why-holds__grid">
         <div class="why-holds__card">
           <div class="why-holds__icon" aria-hidden="true">
-            <svg width="56" height="56" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="60" height="60" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Waist & Torso Proportions -->
-              <path d="M19 8 C22 18, 25 28, 20 38 C16 46, 13 54, 13 64" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M53 8 C50 18, 47 28, 52 38 C56 46, 59 54, 59 64" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
-              <circle cx="36" cy="40" r="1.5" fill="#140F0A"/>
+              <path d="M20 12 C23 22, 26 30, 22 38 C17 46, 14 54, 14 62" stroke="#140F0A" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M52 12 C49 22, 46 30, 50 38 C55 46, 58 54, 58 62" stroke="#140F0A" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="36" cy="40" r="1.8" fill="#140F0A"/>
               <!-- Tape Roll / Coil on Left -->
-              <ellipse cx="14" cy="38" rx="5.5" ry="3.5" stroke="#140F0A" stroke-width="1.8"/>
-              <path d="M8.5 38 C8.5 44, 14 47, 19.5 45" stroke="#140F0A" stroke-width="1.8" fill="none"/>
+              <ellipse cx="12" cy="38" rx="6" ry="4" stroke="#140F0A" stroke-width="2.4" fill="#FAF7F2"/>
+              <path d="M7 38 C7 44, 12 48, 18 46" stroke="#140F0A" stroke-width="2.4" fill="none"/>
               <!-- Measuring Tape wrapping waist -->
-              <path d="M14 41 C24 45, 46 45, 56 41 L56 47.5 C46 51.5, 24 51.5, 14 47.5 Z" stroke="#140F0A" stroke-width="1.8" fill="#FAF7F2" stroke-linejoin="round"/>
-              <line x1="20" y1="43.5" x2="20" y2="47" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
-              <line x1="26" y1="44.2" x2="26" y2="48.5" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
-              <line x1="32" y1="44.5" x2="32" y2="49" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
-              <line x1="38" y1="44.5" x2="38" y2="49" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
-              <line x1="44" y1="44.2" x2="44" y2="48.5" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
-              <line x1="50" y1="43.5" x2="50" y2="47" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M14 40 C24 45, 48 45, 58 40 L58 47 C48 52, 24 52, 14 47 Z" stroke="#140F0A" stroke-width="2.4" fill="#FAF7F2" stroke-linejoin="round"/>
+              <line x1="21" y1="42.5" x2="21" y2="47.5" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="28" y1="43.5" x2="28" y2="48.5" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="36" y1="44" x2="36" y2="49" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="44" y1="43.5" x2="44" y2="48.5" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="51" y1="42.5" x2="51" y2="47.5" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
               <!-- Inward Guideline Arrow -->
-              <line x1="63" y1="26" x2="52" y2="26" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
-              <polyline points="56 22, 52 26, 56 30" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="64" y1="26" x2="53" y2="26" stroke="#140F0A" stroke-width="2.4" stroke-linecap="round"/>
+              <polyline points="57 22, 53 26, 57 30" stroke="#140F0A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3 class="why-holds__title">Proportioned for South Asian Bodies</h3>
@@ -661,17 +655,17 @@ app.innerHTML = `<div data-page-content>
 
         <div class="why-holds__card">
           <div class="why-holds__icon" aria-hidden="true">
-            <svg width="56" height="56" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="60" height="60" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Center Water Droplet -->
-              <path d="M36 10 C36 10, 27 22, 27 28 A9 9 0 0 0 45 28 C45 22, 36 10, 36 10 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M36 8 C36 8, 26 21, 26 28 A10 10 0 0 0 46 28 C46 21, 36 8, 36 8 Z" stroke="#140F0A" stroke-width="2.4" stroke-linejoin="round" fill="#FAF7F2"/>
               <!-- Left Droplet -->
-              <path d="M21 18 C21 18, 15 25, 15 29 A6 6 0 0 0 27 29 C27 25, 21 18, 21 18 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M20 16 C20 16, 14 24, 14 28.5 A6.5 6.5 0 0 0 27 28.5 C27 24, 20 16, 20 16 Z" stroke="#140F0A" stroke-width="2.4" stroke-linejoin="round" fill="#FAF7F2"/>
               <!-- Right Droplet -->
-              <path d="M51 18 C51 18, 45 25, 45 29 A6 6 0 0 0 57 29 C57 25, 51 18, 51 18 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M52 16 C52 16, 45 24, 45 28.5 A6.5 6.5 0 0 0 58 28.5 C58 24, 52 16, 52 16 Z" stroke="#140F0A" stroke-width="2.4" stroke-linejoin="round" fill="#FAF7F2"/>
               <!-- Mineral Water Ripple Waves -->
-              <path d="M10 44 C15 40, 21 40, 26 44 C31 48, 37 48, 42 44 C47 40, 53 40, 58 44 C60.5 46, 63 46, 65 44" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M10 52 C15 48, 21 48, 26 52 C31 56, 37 56, 42 52 C47 48, 53 48, 58 52 C60.5 54, 63 54, 65 52" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M10 60 C15 56, 21 56, 26 60 C31 64, 37 64, 42 60 C47 56, 53 56, 58 60 C60.5 62, 63 62, 65 60" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M9 44 C15 39, 21 39, 27 44 C33 49, 39 49, 45 44 C51 39, 57 39, 63 44" stroke="#140F0A" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M9 52 C15 47, 21 47, 27 52 C33 57, 39 57, 45 52 C51 47, 57 47, 63 52" stroke="#140F0A" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M9 60 C15 55, 21 55, 27 60 C33 65, 39 65, 45 60 C51 55, 57 55, 63 60" stroke="#140F0A" stroke-width="2.4" stroke-linecap="round"/>
             </svg>
           </div>
           <h3 class="why-holds__title">Hard-Water Colorfastness</h3>
@@ -680,21 +674,21 @@ app.innerHTML = `<div data-page-content>
 
         <div class="why-holds__card">
           <div class="why-holds__icon" aria-hidden="true">
-            <svg width="56" height="56" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="60" height="60" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Botanical Leaf on Left -->
-              <path d="M10 50 C10 32, 22 18, 35 18 C35 37, 23 50, 10 50 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
-              <path d="M10 50 C18 42, 26 33, 35 18" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M19 40 L26 39" stroke="#140F0A" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M23 33 L30 31" stroke="#140F0A" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M27 26 L32 23" stroke="#140F0A" stroke-width="1.5" stroke-linecap="round"/>
-              <!-- Rosette Scalloped Certificate Badge on Right -->
-              <path d="M54 13 L56.5 15.5 L60 15 L61.5 18 L64.8 19 L65 22.5 L68 24.5 L67 28 L69 31 L67 34 L68 37.5 L65 39.5 L64.8 43 L61.5 44 L60 47 L56.5 46.5 L54 49 L51.5 46.5 L48 47 L46.5 44 L43.2 43 L43 39.5 L40 37.5 L41 34 L39 31 L41 28 L40 24.5 L43 22.5 L43.2 19 L46.5 18 L48 15 L51.5 15.5 Z" stroke="#140F0A" stroke-width="1.7" stroke-linejoin="round" fill="#FAF7F2"/>
-              <circle cx="54" cy="31" r="10" stroke="#140F0A" stroke-width="1.5" fill="none"/>
+              <path d="M10 50 C10 30, 22 16, 36 16 C36 36, 24 50, 10 50 Z" stroke="#140F0A" stroke-width="2.4" stroke-linejoin="round" fill="#FAF7F2"/>
+              <path d="M10 50 C18 42, 27 32, 36 16" stroke="#140F0A" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M19 40 L26 38" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M23 33 L30 30" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M27 25 L33 22" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <!-- Rosette Certificate Badge on Right -->
+              <path d="M 65.0 30.0 Q 67.7 33.9 63.4 36.0 Q 63.7 40.7 59.0 40.4 Q 56.9 44.7 53.0 42.0 Q 49.1 44.7 47.0 40.4 Q 42.3 40.7 42.6 36.0 Q 38.3 33.9 41.0 30.0 Q 38.3 26.1 42.6 24.0 Q 42.3 19.3 47.0 19.6 Q 49.1 15.3 53.0 18.0 Q 56.9 15.3 59.0 19.6 Q 63.7 19.3 63.4 24.0 Q 67.7 26.1 65.0 30.0 Z" stroke="#140F0A" stroke-width="2.2" stroke-linejoin="round" fill="#FAF7F2"/>
+              <circle cx="53" cy="30" r="9.5" stroke="#140F0A" stroke-width="2" fill="none"/>
               <!-- Checkmark inside Badge -->
-              <polyline points="49.5 31, 52.5 34.5, 59 27" stroke="#140F0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="48 30, 51.5 33.5, 58 26" stroke="#140F0A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
               <!-- Ribbon Tails Below Badge -->
-              <path d="M47 43 L43 59 L48.5 55 L53 59 L51.5 44.5" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M56.5 44.5 L55 59 L59.5 55 L65 59 L61 43" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M46 41 L42 58 L47.5 54 L52 58 L50.5 42.5" stroke="#140F0A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M55.5 42.5 L54 58 L58.5 54 L64 58 L60 41" stroke="#140F0A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3 class="why-holds__title">OEKO-TEX® Standard 100</h3>

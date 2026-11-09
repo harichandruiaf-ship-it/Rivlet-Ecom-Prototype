@@ -681,6 +681,12 @@
   transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
 }
 
+.promises-pill__icon-wrap svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
 .promises-pill__item:hover .promises-pill__icon-wrap {
   background: #E6DCce;
   color: #0E0B07;
@@ -1372,8 +1378,8 @@
   }
 
   .promises-pill__icon-wrap svg {
-    width: 23px;
-    height: 23px;
+    width: 24px;
+    height: 24px;
   }
 
   .promises-pill__text {
@@ -2310,12 +2316,12 @@
 }
 
 .why-holds__icon {
-  width: 54px;
-  height: 54px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
   color: var(--color-ink);
 }
 

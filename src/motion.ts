@@ -350,24 +350,23 @@ function bindReviewRail(rail: HTMLElement): void {
 }
 
 /**
- * Shop-by-situation ribbon: continuous circular auto-scroll on mobile only.
- * Seamless infinity loop (Summer → Gym → … → Travel → Summer…); pauses on interact.
+ * Shop-by-situation ribbon: auto-scroll with delays across all screens.
+ * Seamless infinity loop (Summer → Gym → Yoga → Office → …); pauses on user interact.
  */
 export function initSituationRails(root: ParentNode = document): void {
-  const mobileMq = window.matchMedia('(max-width: 899px)')
   const rails = [
     ...((root as Document | Element).querySelectorAll?.('[data-situation-rail]') ?? []),
   ] as HTMLElement[]
-  rails.forEach((rail) => bindSituationRail(rail, mobileMq))
+  rails.forEach((rail) => bindSituationRail(rail))
 }
 
-function bindSituationRail(rail: HTMLElement, mobileMq: MediaQueryList): void {
+function bindSituationRail(rail: HTMLElement): void {
   if (rail.dataset.situationRailBound === '1') return
   rail.dataset.situationRailBound = '1'
 
   if (rail.dataset.situationLoop !== '1') {
     const source = [...rail.querySelectorAll<HTMLElement>('.situation-panel')]
-    // Two full copies so fast flicks never hit a hard end
+    // Two full copies so fast scrolls never hit a hard end
     for (let pass = 0; pass < 2; pass++) {
       source.forEach((node) => {
         const clone = node.cloneNode(true) as HTMLElement
@@ -384,105 +383,155 @@ function bindSituationRail(rail: HTMLElement, mobileMq: MediaQueryList): void {
 
   let paused = false
   let inView = false
-  let raf = 0
+  let index = 0
+  let timer: number | undefined
   let resumeTimer: number | undefined
-  let cachedLoop = 0
-  const SPEED = 0.65 // px per frame - continuous marquee
+  let animTimer: number | undefined
 
   const originals = () =>
     [...rail.querySelectorAll<HTMLElement>('.situation-panel:not([data-situation-clone])')]
+  const allCards = () => [...rail.querySelectorAll<HTMLElement>('.situation-panel')]
 
-  const measureLoop = () => {
+  const offsetFor = (card: HTMLElement) => {
     const first = originals()[0]
-    const firstClone = rail.querySelector<HTMLElement>('[data-situation-clone]')
-    if (!first || !firstClone) {
-      cachedLoop = 0
-      return 0
-    }
-    cachedLoop = firstClone.offsetLeft - first.offsetLeft
-    return cachedLoop
+    if (!first) return 0
+    return card.offsetLeft - first.offsetLeft
   }
 
-  const normalize = () => {
-    if (!mobileMq.matches) return
-    const width = cachedLoop || measureLoop()
-    if (width <= 1) return
-    // Keep scroll inside the first set so the track never ends
-    while (rail.scrollLeft >= width) rail.scrollLeft -= width
-    while (rail.scrollLeft < 0) rail.scrollLeft += width
+  const goTo = (i: number, behavior: ScrollBehavior) => {
+    const cards = allCards()
+    const n = originals().length
+    if (n < 1 || !cards.length) return
+    const target = cards[((i % cards.length) + cards.length) % cards.length]
+    if (!target) return
+    rail.scrollTo({ left: offsetFor(target), behavior })
   }
 
-  const tick = () => {
-    if (
-      !reducedMotion() &&
-      mobileMq.matches &&
-      inView &&
-      !paused &&
-      rail.isConnected
-    ) {
-      rail.scrollLeft += SPEED
-      normalize()
+  const wrapIfNeeded = () => {
+    const n = originals().length
+    if (n < 1) return
+    if (index >= n) {
+      index = index % n
+      goTo(index, 'auto')
+    } else if (index < 0) {
+      index = ((index % n) + n) % n
+      goTo(index, 'auto')
     }
-    raf = requestAnimationFrame(tick)
+  }
+
+  const stop = () => {
+    if (timer !== undefined) {
+      window.clearInterval(timer)
+      timer = undefined
+    }
+  }
+
+  const step = () => {
+    if (paused || !inView || !rail.isConnected || reducedMotion()) return
+    const n = originals().length
+    if (n < 2) return
+
+    index += 1
+    goTo(index, 'smooth')
+    if (animTimer !== undefined) window.clearTimeout(animTimer)
+    animTimer = window.setTimeout(wrapIfNeeded, 850)
+  }
+
+  const start = () => {
+    stop()
+    if (!inView || paused || reducedMotion()) return
+    timer = window.setInterval(step, 3200) // auto-scroll with 3.2s delay between moments
+  }
+
+  const syncIndexFromScroll = () => {
+    const cards = originals()
+    const n = cards.length
+    if (n < 1) return
+    const x = rail.scrollLeft
+    let best = 0
+    let bestDist = Infinity
+    cards.forEach((card, i) => {
+      const d = Math.abs(offsetFor(card) - x)
+      if (d < bestDist) {
+        bestDist = d
+        best = i
+      }
+    })
+    const clone0 = rail.querySelector<HTMLElement>('[data-situation-clone]')
+    if (clone0 && x >= offsetFor(clone0) - 8) {
+      const all = allCards()
+      let nearest = n
+      let nearestDist = Infinity
+      all.forEach((card, i) => {
+        const d = Math.abs(offsetFor(card) - x)
+        if (d < nearestDist) {
+          nearestDist = d
+          nearest = i
+        }
+      })
+      index = nearest
+      wrapIfNeeded()
+      return
+    }
+    index = best
   }
 
   const pauseForUser = () => {
     paused = true
+    stop()
     if (resumeTimer !== undefined) window.clearTimeout(resumeTimer)
   }
 
   const resumeLater = () => {
+    syncIndexFromScroll()
     if (resumeTimer !== undefined) window.clearTimeout(resumeTimer)
     resumeTimer = window.setTimeout(() => {
       paused = false
-    }, 1800)
+      start()
+    }, 2800)
   }
 
+  rail.addEventListener('scrollend', () => {
+    if (paused) syncIndexFromScroll()
+    else wrapIfNeeded()
+  })
   rail.addEventListener('pointerdown', pauseForUser)
   rail.addEventListener('touchstart', pauseForUser, { passive: true })
   rail.addEventListener('wheel', pauseForUser, { passive: true })
   rail.addEventListener('pointerup', resumeLater)
   rail.addEventListener('touchend', resumeLater, { passive: true })
-  rail.addEventListener('scroll', normalize, { passive: true })
+  rail.addEventListener('mouseenter', pauseForUser)
+  rail.addEventListener('mouseleave', resumeLater)
 
   const ro = new ResizeObserver(() => {
-    measureLoop()
-    normalize()
+    wrapIfNeeded()
   })
   ro.observe(rail)
   originals().forEach((el) => ro.observe(el))
 
-  // Remeasure after images settle so loop width stays accurate
   rail.querySelectorAll('img').forEach((img) => {
-    if (!img.complete) img.addEventListener('load', () => measureLoop(), { once: true })
+    if (!img.complete) img.addEventListener('load', () => wrapIfNeeded(), { once: true })
   })
-  measureLoop()
 
   const io = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        inView = entry.isIntersecting && entry.intersectionRatio >= 0.15
-        if (inView) measureLoop()
+        inView = entry.isIntersecting && entry.intersectionRatio >= 0.2
+        if (inView) start()
+        else stop()
       }
     },
-    { threshold: [0, 0.15, 0.4] },
+    { threshold: [0, 0.2, 0.5] },
   )
   io.observe(rail)
 
-  mobileMq.addEventListener('change', () => {
-    if (!mobileMq.matches) {
-      rail.scrollLeft = 0
-      return
-    }
-    measureLoop()
-    normalize()
-  })
+  goTo(0, 'auto')
+  start()
 
-  raf = requestAnimationFrame(tick)
   window.addEventListener(
     'pagehide',
     () => {
-      cancelAnimationFrame(raf)
+      stop()
       ro.disconnect()
       io.disconnect()
     },

@@ -134,15 +134,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(2.2rem + var(--safe-top));
+  min-height: calc(2.2rem + var(--safe-top));
   padding:
     var(--safe-top)
-    max(0.5rem, env(safe-area-inset-right, 0px))
+    max(0.75rem, env(safe-area-inset-right, 0px))
     0
-    max(0.5rem, env(safe-area-inset-left, 0px));
+    max(0.75rem, env(safe-area-inset-left, 0px));
   background: #140F0A;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.92);
+  color: #FAF7F2;
 }
 
 .announce-bar-reference {
@@ -155,7 +155,7 @@
   font-size: 0.74rem;
   font-weight: 400;
   letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.92);
+  color: #FAF7F2;
   white-space: nowrap;
 }
 
@@ -181,6 +181,21 @@
   .announce-bar-reference {
     font-size: 0.68rem;
     gap: 0.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header__rail {
+    min-height: calc(2rem + var(--safe-top));
+    padding-block: 0.25rem;
+  }
+
+  .announce-bar-reference {
+    font-size: 0.67rem;
+    gap: 0.35rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
   }
 }
 
@@ -393,35 +408,33 @@
 }
 
 /* Floating pill header styling over home hero */
+.site-header--over-hero:not(.is-scrolled) .site-header__bar {
+  pointer-events: auto;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: #1A130D;
+}
+
+.site-header.is-scrolled .site-header__bar,
+.site-header--over-hero.is-scrolled .site-header__bar {
+  background: rgba(246, 240, 233, 0.94);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 32px rgba(22, 15, 9, 0.12);
+}
+
 @media (max-width: 899px) {
-  .site-header--over-hero:not(.is-scrolled) .site-header__rail {
-    background: rgba(22, 17, 13, 0.92);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 252, 247, 0.92);
-  }
-
-  .site-header--over-hero:not(.is-scrolled) .announce-slide,
-  .site-header--over-hero:not(.is-scrolled) .announce-slide--motto,
-  .site-header--over-hero:not(.is-scrolled) .announce-nav {
-    color: rgba(255, 252, 247, 0.92);
-  }
-
-  .site-header--over-hero:not(.is-scrolled) .announce-nav:hover {
-    background: rgba(255, 252, 247, 0.12);
-  }
-
-  .site-header--over-hero:not(.is-scrolled) .announce-mark {
-    filter: brightness(0) invert(1);
-    opacity: 0.95;
-  }
-
   .site-header--over-hero:not(.is-scrolled) .site-header__bar {
     pointer-events: auto;
-    background: rgba(246, 240, 233, 0.88);
-    backdrop-filter: blur(16px) saturate(1.2);
-    -webkit-backdrop-filter: blur(16px) saturate(1.2);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     color: #1A130D;
   }
 
@@ -458,17 +471,21 @@
     background: rgba(255, 252, 247, 0.16);
   }
 
-  /* Restore solid chrome once scrolled / menu open */
-  .site-header--over-hero.is-scrolled .site-header__rail {
-    background: color-mix(in srgb, var(--color-surface) 82%, var(--color-canvas));
-    border-bottom: 1px solid var(--color-line);
-    color: var(--color-navy);
+  .site-header--over-hero.is-scrolled .site-header__bar {
+    background: rgba(246, 240, 233, 0.94);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 
-  .site-header--over-hero.is-scrolled .announce-slide,
-  .site-header--over-hero.is-scrolled .announce-slide--motto,
-  .site-header--over-hero.is-scrolled .announce-nav {
-    color: var(--color-navy);
+  /* Information announcement rail permanently dark across scroll states */
+  .site-header__rail,
+  .site-header--over-hero .site-header__rail,
+  .site-header--over-hero.is-scrolled .site-header__rail {
+    background: #140F0A !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #FAF7F2 !important;
   }
 
   .site-header--over-hero.is-scrolled .announce-mark,

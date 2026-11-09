@@ -625,24 +625,80 @@ app.innerHTML = `<div data-page-content>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Why it holds</p>
-        <h2 class="display">Built for the climate you actually live in.</h2>
+  <section class="section why-holds" id="why-it-holds">
+    <div class="container container--wide">
+      <div class="why-holds__head">
+        <p class="why-holds__eyebrow">WHY IT HOLDS</p>
+        <h2 class="display why-holds__headline">Built for the climate you live in.</h2>
       </div>
-      <div class="trust-grid">
-        <div class="trust-item">
-          <h3>South-Asian block</h3>
-          <p>Graded for real proportions - including cup-inclusive support on bras and tanks.</p>
+      <div class="why-holds__grid">
+        <div class="why-holds__card">
+          <div class="why-holds__icon" aria-hidden="true">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Waist & Torso Proportions -->
+              <path d="M19 8 C22 18, 25 28, 20 38 C16 46, 13 54, 13 64" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M53 8 C50 18, 47 28, 52 38 C56 46, 59 54, 59 64" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="36" cy="40" r="1.5" fill="#140F0A"/>
+              <!-- Tape Roll / Coil on Left -->
+              <ellipse cx="14" cy="38" rx="5.5" ry="3.5" stroke="#140F0A" stroke-width="1.8"/>
+              <path d="M8.5 38 C8.5 44, 14 47, 19.5 45" stroke="#140F0A" stroke-width="1.8" fill="none"/>
+              <!-- Measuring Tape wrapping waist -->
+              <path d="M14 41 C24 45, 46 45, 56 41 L56 47.5 C46 51.5, 24 51.5, 14 47.5 Z" stroke="#140F0A" stroke-width="1.8" fill="#FAF7F2" stroke-linejoin="round"/>
+              <line x1="20" y1="43.5" x2="20" y2="47" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="26" y1="44.2" x2="26" y2="48.5" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="32" y1="44.5" x2="32" y2="49" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="38" y1="44.5" x2="38" y2="49" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="44" y1="44.2" x2="44" y2="48.5" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="50" y1="43.5" x2="50" y2="47" stroke="#140F0A" stroke-width="1.4" stroke-linecap="round"/>
+              <!-- Inward Guideline Arrow -->
+              <line x1="63" y1="26" x2="52" y2="26" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <polyline points="56 22, 52 26, 56 30" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-holds__title">Proportioned for South Asian Bodies</h3>
+          <p class="why-holds__copy">Graded for real proportions - including cup-inclusive support on bras and tanks.</p>
         </div>
-        <div class="trust-item">
-          <h3>Hard-water ready</h3>
-          <p>Colourfast and shape-holding yarn chemistry for mineral-heavy laundry cycles.</p>
+
+        <div class="why-holds__card">
+          <div class="why-holds__icon" aria-hidden="true">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Center Water Droplet -->
+              <path d="M36 10 C36 10, 27 22, 27 28 A9 9 0 0 0 45 28 C45 22, 36 10, 36 10 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
+              <!-- Left Droplet -->
+              <path d="M21 18 C21 18, 15 25, 15 29 A6 6 0 0 0 27 29 C27 25, 21 18, 21 18 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
+              <!-- Right Droplet -->
+              <path d="M51 18 C51 18, 45 25, 45 29 A6 6 0 0 0 57 29 C57 25, 51 18, 51 18 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
+              <!-- Mineral Water Ripple Waves -->
+              <path d="M10 44 C15 40, 21 40, 26 44 C31 48, 37 48, 42 44 C47 40, 53 40, 58 44 C60.5 46, 63 46, 65 44" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M10 52 C15 48, 21 48, 26 52 C31 56, 37 56, 42 52 C47 48, 53 48, 58 52 C60.5 54, 63 54, 65 52" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M10 60 C15 56, 21 56, 26 60 C31 64, 37 64, 42 60 C47 56, 53 56, 58 60 C60.5 62, 63 62, 65 60" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="why-holds__title">Hard-Water Colorfastness</h3>
+          <p class="why-holds__copy">Colourfast and shape-holding yarn chemistry for mineral-heavy laundry cycles.</p>
         </div>
-        <div class="trust-item">
-          <h3>Standards first</h3>
-          <p>OEKO-TEX® Standard 100 intent across the range. Claims validated before print.</p>
+
+        <div class="why-holds__card">
+          <div class="why-holds__icon" aria-hidden="true">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Botanical Leaf on Left -->
+              <path d="M10 50 C10 32, 22 18, 35 18 C35 37, 23 50, 10 50 Z" stroke="#140F0A" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M10 50 C18 42, 26 33, 35 18" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M19 40 L26 39" stroke="#140F0A" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M23 33 L30 31" stroke="#140F0A" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M27 26 L32 23" stroke="#140F0A" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Rosette Scalloped Certificate Badge on Right -->
+              <path d="M54 13 L56.5 15.5 L60 15 L61.5 18 L64.8 19 L65 22.5 L68 24.5 L67 28 L69 31 L67 34 L68 37.5 L65 39.5 L64.8 43 L61.5 44 L60 47 L56.5 46.5 L54 49 L51.5 46.5 L48 47 L46.5 44 L43.2 43 L43 39.5 L40 37.5 L41 34 L39 31 L41 28 L40 24.5 L43 22.5 L43.2 19 L46.5 18 L48 15 L51.5 15.5 Z" stroke="#140F0A" stroke-width="1.7" stroke-linejoin="round" fill="#FAF7F2"/>
+              <circle cx="54" cy="31" r="10" stroke="#140F0A" stroke-width="1.5" fill="none"/>
+              <!-- Checkmark inside Badge -->
+              <polyline points="49.5 31, 52.5 34.5, 59 27" stroke="#140F0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Ribbon Tails Below Badge -->
+              <path d="M47 43 L43 59 L48.5 55 L53 59 L51.5 44.5" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M56.5 44.5 L55 59 L59.5 55 L65 59 L61 43" stroke="#140F0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-holds__title">OEKO-TEX® Standard 100</h3>
+          <p class="why-holds__copy">OEKO-TEX® Standard 100 validation across the range. Gentle on skin, built to endure.</p>
         </div>
       </div>
     </div>

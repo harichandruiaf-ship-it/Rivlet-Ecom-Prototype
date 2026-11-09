@@ -330,6 +330,77 @@ app.innerHTML = `<div data-page-content>
     </div>
   </section>
 
+  <!-- The 4 Promises Floating Trust Dock -->
+  <aside class="promises-dock" aria-label="Rivlet four climate-engineered promises">
+    <div class="promises-pill" role="region" aria-label="The 4 Rivlet Promises">
+      <a class="promises-pill__item" href="#promise-no-patch" data-scroll-to="#promise-no-patch" aria-label="No patch - Zoned sweat barriers">
+        <span class="promises-pill__icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9.5" stroke-opacity="0.9" />
+            <path d="M12 7c0 0-3.2 4.2-3.2 6.2a3.2 3.2 0 0 0 6.4 0c0-2-3.2-6.2-3.2-6.2z" />
+            <line x1="5.2" y1="5.2" x2="18.8" y2="18.8" />
+          </svg>
+        </span>
+        <div class="promises-pill__text">
+          <strong class="promises-pill__title">NO PATCH</strong>
+          <span class="promises-pill__sub">(Zoned sweat-barriers)</span>
+        </div>
+      </a>
+
+      <span class="promises-pill__divider" aria-hidden="true"></span>
+
+      <a class="promises-pill__item" href="#promise-no-smell" data-scroll-to="#promise-no-smell" aria-label="No smell - Silver-ion freshness">
+        <span class="promises-pill__icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 5c-.7 1.8-.7 3.5 0 5.2" />
+            <path d="M12 4c-1 2.3-1 4.7 0 7" />
+            <path d="M16 5c-.7 1.8-.7 3.5 0 5.2" />
+            <path d="M5.5 17.5c2.5-1.5 5.5-1.5 8 0" />
+            <path d="M9.5 20.5c2-1.2 4.5-1.2 6.5 0" />
+            <line x1="4.8" y1="4.8" x2="19.2" y2="19.2" />
+          </svg>
+        </span>
+        <div class="promises-pill__text">
+          <strong class="promises-pill__title">NO SMELL</strong>
+          <span class="promises-pill__sub">(Silver-ion freshness)</span>
+        </div>
+      </a>
+
+      <span class="promises-pill__divider" aria-hidden="true"></span>
+
+      <a class="promises-pill__item" href="#promise-no-rub" data-scroll-to="#promise-no-rub" aria-label="No rub - Zero chafing">
+        <span class="promises-pill__icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 8c1.5-1.5 3.5-1.5 5 0l2 2c1.5 1.5 1.5 3.5 0 5" />
+            <path d="M17 16c-1.5 1.5-3.5 1.5-5 0l-2-2c-1.5-1.5-1.5-3.5 0-5" />
+            <line x1="4.8" y1="4.8" x2="19.2" y2="19.2" />
+          </svg>
+        </span>
+        <div class="promises-pill__text">
+          <strong class="promises-pill__title">NO RUB</strong>
+          <span class="promises-pill__sub">(Zero chafing)</span>
+        </div>
+      </a>
+
+      <span class="promises-pill__divider" aria-hidden="true"></span>
+
+      <a class="promises-pill__item" href="#promise-no-ride-up" data-scroll-to="#promise-no-ride-up" aria-label="No ride-up - No-slip bands">
+        <span class="promises-pill__icon-wrap" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8c4-1 12-1 16 0" />
+            <path d="M4 16c4-1 12-1 16 0" />
+            <path d="M7 12h2M11 12h2M15 12h2" stroke-linecap="round" stroke-dasharray="0.1 3" stroke-width="2.5" />
+            <path d="M2.5 12l2-1.8m0 3.6l-2-1.8M21.5 12l-2-1.8m0 3.6l2-1.8" />
+          </svg>
+        </span>
+        <div class="promises-pill__text">
+          <strong class="promises-pill__title">NO RIDE-UP</strong>
+          <span class="promises-pill__sub">(No-slip bands)</span>
+        </div>
+      </a>
+    </div>
+  </aside>
+
   <section class="section" id="the-friction">
     <div class="container">
       <div class="section-head section-head--friction">
@@ -340,7 +411,7 @@ app.innerHTML = `<div data-page-content>
     </div>
   </section>
 
-  <section class="section section--ink promise ocean-band">
+  <section class="section section--ink promise ocean-band" id="the-promise">
     <div class="container">
       <div class="section-head section-head--promise">
         <p class="eyebrow">The promise</p>
@@ -350,7 +421,7 @@ app.innerHTML = `<div data-page-content>
     <div class="promise-runway" role="list">
       ${PROMISE_FILMS.map(
         (f) => `
-        <article class="promise-film" role="listitem" aria-label="${f.title}">
+        <article class="promise-film" role="listitem" id="promise-${f.id}" aria-label="${f.title}">
           <div class="promise-film__media" aria-hidden="true">
             <video
               class="promise-film__video"
@@ -834,7 +905,13 @@ function bindHeroLookInteractivity(): void {
       const targetId = anchor.getAttribute('href')
       if (targetId) {
         const target = document.querySelector(targetId)
-        target?.scrollIntoView({ behavior: 'smooth' })
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' })
+          if (target.classList.contains('promise-film')) {
+            target.classList.add('is-highlighted')
+            setTimeout(() => target.classList.remove('is-highlighted'), 2200)
+          }
+        }
       }
     })
   })

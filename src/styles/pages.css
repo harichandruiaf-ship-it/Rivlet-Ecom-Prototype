@@ -622,13 +622,14 @@
   }
 }
 
-/* 4 Promises Floating Trust Dock */
+/* 4 Promises Floating Trust Dock: Split 50% over hero banner & 50% over next section */
 .promises-dock {
   position: relative;
-  z-index: 20;
+  z-index: 25;
   width: 100%;
   max-width: min(calc(100% - 2.5rem), 78rem);
-  margin: -1.85rem auto clamp(1.75rem, 3.5vw, 2.75rem);
+  margin: 0 auto clamp(0.75rem, 1.5vw, 1.5rem);
+  transform: translateY(-50%);
   padding-inline: 0.5rem;
 }
 
@@ -727,7 +728,8 @@
 
 @media (max-width: 899px) {
   .promises-dock {
-    margin: -1.75rem auto 1rem;
+    margin: 0 auto 0.75rem;
+    transform: translateY(-50%);
     padding-inline: 0.75rem;
     max-width: 100%;
     display: flex;
@@ -877,6 +879,7 @@
 
 .friction-promise {
   position: relative;
+  display: flow-root;
   background: var(--color-canvas);
   padding-top: 0;
   padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
@@ -1316,7 +1319,8 @@
   .promises-dock {
     position: relative;
     z-index: 25;
-    margin: -2.4rem auto 1.25rem;
+    margin: 0 auto 0.5rem;
+    transform: translateY(-50%);
     width: 100%;
     display: flex;
     justify-content: center;
